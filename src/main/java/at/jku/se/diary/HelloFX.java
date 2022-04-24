@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 
 public class HelloFX extends Application {
     Stage window;
-    Button button, button2;
+    Button button, button2, button3;
     Scene scene1, scene2;
     TableView<Entries> tableView;
     TextField title, location, date;
@@ -45,6 +45,38 @@ public class HelloFX extends Application {
     */
     public void start(Stage stage) {
         window = stage;
+
+
+        VBox layout = new VBox();
+
+        Scene scene1 = new Scene(layout, 900, 600);
+        Image img = new Image("https://www.nicepng.com/png/full/196-1965889_travel-png-hd-gathering-no-moss-memoir-of.png");
+        BackgroundImage bImg = new BackgroundImage(img,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bGround = new Background(bImg);
+        layout.setBackground(bGround);
+
+
+        button = new Button();
+        button.setText("New entry");
+        button3 = new Button();
+        button3.setText("Search Entry");
+        button.setFont(Font.font("Arial", 40));
+        button3.setFont(Font.font("Arial", 40));
+        button.setOnAction(e-> stage.setScene(scene2));
+        button3.setOnAction(e->System.out.println("abicim"));
+        layout.getChildren().addAll(button, button3);
+        layout.setPadding(new Insets(5,5,5,5));
+        layout.setSpacing(10);
+        layout.setAlignment(Pos.CENTER_RIGHT);
+        stage.setScene(scene1);
+        window.show();
+
+        stage.setTitle("DIARY_FX");
+        stage.show();
 
         TableColumn<Entries, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setMinWidth(200);
@@ -84,11 +116,13 @@ public class HelloFX extends Application {
         addButton.setOnAction(e-> addButtonClicked());
         Button deleteButton = new Button("Delete entry");
         deleteButton.setOnAction(e-> deleteButtonClicked());
+        Button back = new Button("go back");
+        back.setOnAction(e-> window.setScene(scene1));
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(title, location, date, text, addButton, deleteButton);
+        hBox.getChildren().addAll(title, location, date, text, addButton, deleteButton, back);
 
         tableView = new TableView<>();
         tableView.getColumns().addAll(titleColumn, locationColumn, dateColumn, textColumn);
@@ -96,36 +130,10 @@ public class HelloFX extends Application {
         VBox vbox = new VBox();
         vbox.getChildren().addAll(hBox, tableView);
 
-
-        StackPane layout = new StackPane();
-
-        Scene scene1 = new Scene(layout, 900, 600);
-        Image img = new Image("https://www.nicepng.com/png/full/196-1965889_travel-png-hd-gathering-no-moss-memoir-of.png");
-        BackgroundImage bImg = new BackgroundImage(img,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        Background bGround = new Background(bImg);
-        layout.setBackground(bGround);
-
         scene2 = new Scene(vbox, 900, 600);
-        button2 = new Button("go back");
-        button2.setOnAction(e-> window.setScene(scene1));
-        window.setScene(scene2);
-        window.show();
+        window.setScene(scene1);
 
 
-        button = new Button();
-        button.setText("New entry");
-        button.setFont(Font.font("Arial", 40));
-        button.setOnAction(e-> stage.setScene(scene2));
-        layout.setAlignment(Pos.CENTER_RIGHT);
-        layout.getChildren().addAll(button);
-        stage.setScene(scene1);
-
-        stage.setTitle("DIARY_FX");
-        stage.show();
     }
 
     public void addButtonClicked(){
