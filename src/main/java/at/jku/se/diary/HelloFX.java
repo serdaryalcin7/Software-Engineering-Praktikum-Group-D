@@ -22,7 +22,7 @@ import javafx.scene.image.Image;
 import java.awt.event.ActionEvent;
 
 public class HelloFX extends Application {
-
+//test
     Stage window;
     Button button, button2;
     Scene scene1, scene2;
