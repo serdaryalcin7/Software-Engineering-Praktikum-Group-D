@@ -7,6 +7,7 @@ package at.jku.se.diary;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,10 +21,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 
 import java.awt.event.ActionEvent;
+import java.util.Locale;
 
 public class HelloFX extends Application {
-    Button button1, button2,button3,button4;
-    Scene scene1, scene2;
+    Button button,button1, button2,button3,button4;
+    Scene scene,scene1, scene2;
     TableView<Entries> tableView;
     TextField title, location, date;
     TextArea text;
@@ -34,11 +36,13 @@ public class HelloFX extends Application {
 
     @Override
     public void start(Stage stage) {
+    //----------------Scence: HOMEPAGE--------------------
 
+        stage.setTitle("DIARY_FX");
         HBox layout = new HBox();
 
-        scene1 = new Scene(layout, 900,600);
-        Image img = new Image("https://www.nicepng.com/png/full/13-134654_world-map-travel-quotes.png");
+        scene = new Scene(layout, 1200,750);
+        Image img = new Image("https://i.f1g.fr/media/cms/1200x630_crop/2022/02/21/806d983eb123652ee94b2027b8f5487924b2133636999a3dcb56b5236db51093.png");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -47,7 +51,8 @@ public class HelloFX extends Application {
         Background bGround = new Background(bImg);
         layout.setBackground(bGround);
 
-
+        button= new Button();
+        button.setText("Show overview");
         button1 = new Button();
         button1.setText("New entry");
         button2 = new Button();
@@ -57,98 +62,70 @@ public class HelloFX extends Application {
         button4 = new Button();
         button4.setText("show map");
 
+        button.setFont(Font.font("Arial", 25));
         button1.setFont(Font.font("Arial", 25));
         button2.setFont(Font.font("Arial", 25));
         button3.setFont(Font.font("Arial", 25));
         button4.setFont(Font.font("Arial", 25));
 
-        button1.setOnAction(e-> stage.setScene(scene2));
-        //button2.setOnAction(e->System.out.println("abicim"));
-        layout.getChildren().addAll(button1, button2,button3,button4);
+        button1.setOnAction(e-> stage.setScene(scene1));
+
+        layout.getChildren().addAll(button,button1, button2,button3,button4);
         layout.setPadding(new Insets(5,5,5,5));
         layout.setSpacing(10);
         layout.setAlignment(Pos.CENTER);
-        stage.setScene(scene1);
+        stage.setScene(scene);
         stage.show();
 
-        stage.setTitle("DIARY_FX");
-        stage.show();
+        //----------------Scence 1: New entry--------------------
+        Label label1=new Label("Titel: ");
+        Label label2=new Label("Date: ");
+        Label label3=new Label("Location: ");
+        Label label4=new Label("Text: ");
 
-        TableColumn<Entries, String> titleColumn = new TableColumn<>("Title");
-        titleColumn.setMinWidth(200);
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        TextField textField1 =new TextField();
+        TilePane tilePane = new TilePane();
+        TextField textField3 =new TextField();
+        TextArea textArea = new TextArea();
 
-        TableColumn<Entries, String> locationColumn = new TableColumn<>("Location");
-        locationColumn.setMinWidth(200);
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        GridPane gridPane =new GridPane();
+        gridPane.setPadding(new Insets(10,10,10,10));
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
 
-        TableColumn<Entries, String> dateColumn = new TableColumn<>("Date");
-        dateColumn.setMinWidth(200);
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-        TableColumn<Entries, String> textColumn = new TableColumn<>("Text");
-        textColumn.setMinWidth(200);
-        textColumn.setCellValueFactory(new PropertyValueFactory<>("text"));
-
-        title = new TextField();
-        title.setPromptText("title");
-        title.setMinWidth(100);
-
-        location = new TextField();
-        location.setPromptText("location");
-        location.setMinWidth(100);
-
-        date = new TextField();
-        date.setPromptText("date");
-        date.setMinWidth(100);
-
-        text = new TextArea();
-        text.setPromptText("text");
-        text.setMinWidth(200);
+        textField1.setPromptText("Titel...");
+        gridPane.add(label1,0,0);
+        gridPane.add(textField1,1,0);
 
 
+        DatePicker d = new DatePicker();
+        gridPane.add(label2,0,1);
+        tilePane.getChildren().add(d);
+        gridPane.add(tilePane,1,1);
 
-        Button addButton = new Button("Add new Entry");
-        addButton.setOnAction(e-> addButtonClicked());
-        Button deleteButton = new Button("Delete entry");
-        deleteButton.setOnAction(e-> deleteButtonClicked());
+        textField3.setPromptText("Location...");
+        gridPane.add(label3,0,2);
+        gridPane.add(textField3,1,2);
+
+        ScrollPane scro = new ScrollPane(textArea);
+        textArea.setPrefColumnCount(100);
+        textArea.setPromptText("Text...");
+        gridPane.add(label4,0,3);
+        gridPane.add(scro, 1,3,10,10);
+
+        Button addEntry = new Button("Add new Entry");
+        gridPane.add(addEntry,0,40);
+        //addEntry.setOnAction(e-> stage.setScene(scene2));
+
         Button back = new Button("go back");
-        back.setOnAction(e-> stage.setScene(scene1));
+        gridPane.add(back,1,40);
+        back.setOnAction(e-> stage.setScene(scene));
 
-        HBox hBox = new HBox();
-        hBox.setPadding(new Insets(10,10,10,10));
-        hBox.setSpacing(10);
-        hBox.getChildren().addAll(title, location, date, text, addButton, deleteButton, back);
+        scene1 =new Scene(gridPane,1200,750);
+        stage.setScene(scene);
 
-        tableView = new TableView<>();
-        tableView.getColumns().addAll(titleColumn, locationColumn, dateColumn, textColumn);
+        //----------------Scence 2: Overview--------------------
 
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(hBox, tableView);
-
-        scene2 = new Scene(vbox, 900, 600);
-        stage.setScene(scene1);
-
-    }
-
-    public void addButtonClicked(){
-        Entries entries = new Entries();
-        entries.setTitle(title.getText());
-        entries.setLocation(location.getText());
-        entries.setDate(date.getText());
-        entries.setText(text.getText());
-        tableView.getItems().add(entries);
-        title.clear();
-        location.clear();
-        date.clear();
-        text.clear();
-    }
-
-    public void deleteButtonClicked(){
-        ObservableList<Entries> entrySelected, allEntries;
-        allEntries = tableView.getItems();
-        entrySelected = tableView.getSelectionModel().getSelectedItems();
-        entrySelected.forEach(allEntries::remove);
     }
 
 }
