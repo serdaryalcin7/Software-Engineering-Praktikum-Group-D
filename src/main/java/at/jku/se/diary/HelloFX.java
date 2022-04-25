@@ -20,11 +20,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 
 import java.awt.event.ActionEvent;
+import java.util.Date;
 
 public class HelloFX extends Application {
     Stage window;
-    Button button, button2, button3;
-    Scene scene1, scene2;
+    Button button,button1, button2,button3,button4;
+    Scene scene,scene1, scene2;
     TableView<Entries> tableView;
     TextField title, location, date;
     TextArea text;
@@ -34,23 +35,16 @@ public class HelloFX extends Application {
     }
 
     @Override
-   /* public void start(Stage stage) {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }
-    */
     public void start(Stage stage) {
+        //----------------Scene: HOMEPAGE--------------------
+
         window = stage;
 
+        stage.setTitle("DIARY_FX");
+        HBox layout = new HBox();
 
-        VBox layout = new VBox();
-
-        Scene scene1 = new Scene(layout, 900, 600);
-        Image img = new Image("https://www.nicepng.com/png/full/196-1965889_travel-png-hd-gathering-no-moss-memoir-of.png");
+        scene = new Scene(layout, 1200,750);
+        Image img = new Image("https://i.f1g.fr/media/cms/1200x630_crop/2022/02/21/806d983eb123652ee94b2027b8f5487924b2133636999a3dcb56b5236db51093.png");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -59,24 +53,44 @@ public class HelloFX extends Application {
         Background bGround = new Background(bImg);
         layout.setBackground(bGround);
 
-
-        button = new Button();
-        button.setText("New entry");
+        button= new Button();
+        button.setText("Show overview");
+        button1 = new Button();
+        button1.setText("New entry");
+        button2 = new Button();
+        button2.setText("Search Entry");
         button3 = new Button();
-        button3.setText("Search Entry");
-        button.setFont(Font.font("Arial", 40));
-        button3.setFont(Font.font("Arial", 40));
-        button.setOnAction(e-> stage.setScene(scene2));
-        button3.setOnAction(e->System.out.println("abicim"));
-        layout.getChildren().addAll(button, button3);
+        button3.setText("Search for a category");
+        button4 = new Button();
+        button4.setText("show map");
+
+        button.setFont(Font.font("Arial", 25));
+        button1.setFont(Font.font("Arial", 25));
+        button2.setFont(Font.font("Arial", 25));
+        button3.setFont(Font.font("Arial", 25));
+        button4.setFont(Font.font("Arial", 25));
+
+        button1.setOnAction(e-> window.setScene(scene1));
+        button.setOnAction(e-> window.setScene(scene2));
+
+        layout.getChildren().addAll(button,button1, button2,button3,button4);
         layout.setPadding(new Insets(5,5,5,5));
         layout.setSpacing(10);
-        layout.setAlignment(Pos.CENTER_RIGHT);
-        stage.setScene(scene1);
+        layout.setAlignment(Pos.CENTER);
+        stage.setScene(scene);
         window.show();
-
-        stage.setTitle("DIARY_FX");
+        stage.setTitle("DIARY");
         stage.show();
+
+
+        //----------------Scence 1: New entry--------------------
+
+
+
+
+
+        //----------------Scence 2: Overview--------------------
+
 
         TableColumn<Entries, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setMinWidth(200);
@@ -102,36 +116,37 @@ public class HelloFX extends Application {
         location.setPromptText("location");
         location.setMinWidth(100);
 
-        date = new TextField();
-        date.setPromptText("date");
-        date.setMinWidth(100);
+        date  = new TextField();
+        date .setPromptText("date");
+        date .setMinWidth(100);
 
         text = new TextArea();
         text.setPromptText("text");
         text.setMinWidth(200);
 
-
-
-        Button addButton = new Button("Add new Entry");
+        Button addButton = new Button("Add new entry");
         addButton.setOnAction(e-> addButtonClicked());
-        Button deleteButton = new Button("Delete entry");
-        deleteButton.setOnAction(e-> deleteButtonClicked());
-        Button back = new Button("go back");
-        back.setOnAction(e-> window.setScene(scene1));
+        Button back = new Button("back");
+        back.setOnAction(e-> window.setScene(scene));
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(title, location, date, text, addButton, deleteButton, back);
+        hBox.getChildren().addAll(title, location, date, text,addButton, back);
 
         tableView = new TableView<>();
-        tableView.getColumns().addAll(titleColumn, locationColumn, dateColumn, textColumn);
+        tableView.getColumns().addAll(titleColumn, locationColumn, dateColumn,textColumn);
+
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(hBox, tableView);
+        vbox.getChildren().addAll(hBox);
 
-        scene2 = new Scene(vbox, 900, 600);
-        window.setScene(scene1);
+        scene1 = new Scene(vbox,900,600);
+        window.setScene(scene);
+
+        VBox vbox2 = new VBox();
+        vbox2.getChildren().addAll(tableView);
+        scene2 = new Scene(vbox2, 900, 600);
 
 
     }
@@ -149,11 +164,12 @@ public class HelloFX extends Application {
         text.clear();
     }
 
-    public void deleteButtonClicked(){
+    /*public void deleteButtonClicked(){
         ObservableList<Entries> entrySelected, allEntries;
         allEntries = tableView.getItems();
         entrySelected = tableView.getSelectionModel().getSelectedItems();
         entrySelected.forEach(allEntries::remove);
-    }
+    }*/
+
 
 }
