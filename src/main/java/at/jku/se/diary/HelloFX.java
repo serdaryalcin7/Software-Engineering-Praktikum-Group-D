@@ -128,6 +128,11 @@ public class HelloFX extends Application {
         addButton.setOnAction(e-> addButtonClicked());
         Button back = new Button("back");
         back.setOnAction(e-> window.setScene(scene));
+        Button deleteButton = new Button("Delete entry");
+        deleteButton.setOnAction(e-> deleteButtonClicked());
+        Button addentry = new Button("Add new Entry");
+        addentry.setOnAction(e-> window.setScene(scene1));
+
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
@@ -145,7 +150,7 @@ public class HelloFX extends Application {
         window.setScene(scene);
 
         VBox vbox2 = new VBox();
-        vbox2.getChildren().addAll(tableView);
+        vbox2.getChildren().addAll(tableView,addentry ,deleteButton);
         scene2 = new Scene(vbox2, 900, 600);
 
 
@@ -164,12 +169,12 @@ public class HelloFX extends Application {
         text.clear();
     }
 
-    /*public void deleteButtonClicked(){
+    public void deleteButtonClicked(){
         ObservableList<Entries> entrySelected, allEntries;
         allEntries = tableView.getItems();
         entrySelected = tableView.getSelectionModel().getSelectedItems();
         entrySelected.forEach(allEntries::remove);
-    }*/
+    }
 
 
 }
