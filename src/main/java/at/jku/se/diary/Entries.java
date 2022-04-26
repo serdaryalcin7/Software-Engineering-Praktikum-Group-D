@@ -1,5 +1,13 @@
 package at.jku.se.diary;
 
+
+
+
+import javafx.scene.control.DatePicker;
+
+import java.util.Date;
+
+
 public class Entries {
 
     private String title;
