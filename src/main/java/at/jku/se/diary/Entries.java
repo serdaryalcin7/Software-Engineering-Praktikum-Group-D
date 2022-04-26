@@ -2,9 +2,11 @@ package at.jku.se.diary;
 
 
 
+
 import javafx.scene.control.DatePicker;
 
 import java.util.Date;
+
 
 public class Entries {
 
@@ -13,11 +15,14 @@ public class Entries {
     private String location;
     private String text;
 
-    public Entries(String title, String date, String location, String text) {
+    private String tag;
+
+    public Entries(String title, String date, String location, String text, String tag) {
         this.title = title;
         this.date = date;
         this.location = location;
         this.text = text;
+        this.tag = tag;
     }
 
     public Entries() {
@@ -54,5 +59,13 @@ public class Entries {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }
