@@ -1,7 +1,5 @@
 package at.jku.se.diary;
 
-import java.util.Date;
-
 public class Entries {
 
     private String title;
@@ -17,10 +15,7 @@ public class Entries {
     }
 
     public Entries() {
-        this.title = "";
-        this.date ="" ;
-        this.location = "";
-        this.text = "";
+
     }
 
     public String getTitle() {
