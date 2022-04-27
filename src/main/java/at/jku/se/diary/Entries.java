@@ -14,15 +14,16 @@ public class Entries {
     private String date;
     private String location;
     private String text;
-
+    private String categoryText;
     private String tag;
 
-    public Entries(String title, String date, String location, String text, String tag) {
+    public Entries(String title, String date, String location, String text, String tag, String categoryText) {
         this.title = title;
         this.date = date;
         this.location = location;
         this.text = text;
         this.tag = tag;
+        this.categoryText = categoryText;
     }
 
     public Entries() {
@@ -67,5 +68,13 @@ public class Entries {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public String getCategoryText() {
+        return categoryText;
+    }
+
+    public void setCategoryText(String categoryText) {
+        this.categoryText = categoryText;
     }
 }

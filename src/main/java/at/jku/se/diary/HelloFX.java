@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -19,12 +20,12 @@ import java.util.function.Predicate;
 
 public class HelloFX extends Application {
     Stage window;
-    Button button,button1, button2,button3,button4;
-    Scene scene,scene1, scene2,scene3;
-    TableView<Entries> tableView,tableView1;
+    Button button, button1, button2, button3, button4;
+    Scene scene, scene1, scene2, scene3;
+    TableView<Entries> tableView, tableView1;
     TextField title, location, searchField;
     DatePicker date;
-    TextArea text;
+    TextArea text, categoryText;
 
     ComboBox tag;
     ObservableList<Entries> data = FXCollections.observableArrayList();
@@ -37,6 +38,7 @@ public class HelloFX extends Application {
     public void start(Stage stage) {
         //----------------Scene: HOMEPAGE--------------------
         window = stage;
+
 
         window.setTitle("DIARY_FX");
         HBox hBox = new HBox();
@@ -84,6 +86,7 @@ public class HelloFX extends Application {
         Label label3 = new Label("Location: ");
         Label label4 = new Label("Text: ");
         Label label5 = new Label("Category: ");
+        Label label7 = new Label("Category Information: ");
 
         /*----------------Scence 2: Overview--------------------*/
 
@@ -107,6 +110,10 @@ public class HelloFX extends Application {
         tagColumn.setMinWidth(200);
         tagColumn.setCellValueFactory(new PropertyValueFactory<>("tag"));
 
+        TableColumn<Entries, String> categoryTextColumn = new TableColumn<>("Category Text");
+        categoryTextColumn.setMinWidth(200);
+        categoryTextColumn.setCellValueFactory(new PropertyValueFactory<>("categoryText"));
+
 
         title = new TextField();
         title.setPromptText("title...");
@@ -125,10 +132,14 @@ public class HelloFX extends Application {
         text.setMinWidth(200);
 
         tag = new ComboBox<>();
-        final String [] comboBoxItems = {"Hotel", "Restaurant", "Beach"};
+        final String[] comboBoxItems = {"Hotel", "Restaurant", "Beach"};
         tag.setEditable(true);
         tag.setValue("Add a tag");
         tag.getItems().addAll(comboBoxItems);
+
+        categoryText = new TextArea();
+        categoryText.setPromptText("text...");
+        categoryText.setMinWidth(200);
 
         Button addButton = new Button("Add new entry");
         addButton.setOnAction(e -> {
@@ -146,15 +157,15 @@ public class HelloFX extends Application {
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(10, 10, 10, 10));
         vBox.setSpacing(10);
-        vBox.getChildren().addAll(label1, title, label2, date, label3, location, label4, text, label5,tag,addButton,  back1);
+        vBox.getChildren().addAll(label1, title, label2, date, label3, location, label4, text, label5, tag, label7, categoryText, addButton, back1);
 
         tableView = new TableView<>();
-        tableView.getColumns().addAll(titleColumn, locationColumn, dateColumn, textColumn,tagColumn);
+        tableView.getColumns().addAll(titleColumn, locationColumn, dateColumn, textColumn, tagColumn, categoryTextColumn);
 
         VBox vBox2 = new VBox();
         vBox2.getChildren().addAll(vBox);
 
-        scene1 = new Scene(vBox2, 1200, 750);
+        scene1 = new Scene(vBox2, 1000, 700);
 
         Button back2 = new Button("back");
         back2.setOnAction(e -> window.setScene(scene));
@@ -171,8 +182,9 @@ public class HelloFX extends Application {
         searchField.setMinWidth(100);
 
         tableView1 = new TableView<>();
-        tableView1.getColumns().addAll(titleColumn, locationColumn, dateColumn, textColumn,tagColumn);
+        tableView1.getColumns().addAll(titleColumn, locationColumn, dateColumn, textColumn, tagColumn, categoryTextColumn);
 
+        tableView.setItems(data);
         tableView1.setItems(data);
 
         FilteredList<Entries> filteredData = new FilteredList<>(data, e -> true);
@@ -192,6 +204,8 @@ public class HelloFX extends Application {
                     } else if (entries.getText().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
                     } else if (entries.getTag().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (entries.getCategoryText().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
                     }
                     return false;
@@ -215,6 +229,7 @@ public class HelloFX extends Application {
 
         window.setScene(scene);
         window.show();
+
     }
 
     public void addButtonClicked() {
@@ -224,22 +239,27 @@ public class HelloFX extends Application {
         entries.setLocation(location.getText());
         entries.setText(text.getText());
         entries.setTag(String.valueOf(tag.getValue()));
-        tableView.getItems().add(entries);
-        tableView1.getItems().add(entries);
+        entries.setCategoryText(categoryText.getText());
         title.clear();
         date.setValue(null);
         location.clear();
         text.clear();
         tag.setValue(null);
+        categoryText.clear();
+        tableView.getItems().add(entries);
+
+
     }
 
-        public void deleteButtonClicked(){
-            ObservableList<Entries> entrySelected, allEntries;
-            allEntries = tableView.getItems();
-            entrySelected = tableView.getSelectionModel().getSelectedItems();
-            entrySelected.forEach(allEntries::remove);
-        }
+    public void deleteButtonClicked() {
+        ObservableList<Entries> allEntries, entrySelected;
+        allEntries = tableView.getItems();
+        entrySelected = tableView.getSelectionModel().getSelectedItems();
+        entrySelected.forEach(allEntries::remove);
+
+
     }
+}
 
 
 
