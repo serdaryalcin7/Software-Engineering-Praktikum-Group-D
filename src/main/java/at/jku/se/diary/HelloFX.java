@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -212,6 +211,8 @@ public class HelloFX extends Application {
                 });
             });
 
+
+
             SortedList<Entries> sorteddata = new SortedList<>(filteredData);
             sorteddata.comparatorProperty().bind(tableView1.comparatorProperty());
             tableView1.setItems(sorteddata);
@@ -259,6 +260,8 @@ public class HelloFX extends Application {
 
 
     }
+
+
 }
 
 
