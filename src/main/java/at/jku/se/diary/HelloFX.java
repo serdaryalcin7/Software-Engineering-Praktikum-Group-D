@@ -24,7 +24,7 @@ public class HelloFX extends Application {
     Scene scene, scene1, scene2, scene3;
     TableView<Entries> tableView, tableView1;
     TextField title, location, searchField;
-    DatePicker date;
+    DatePicker date,start,end;
     TextArea text, categoryText;
 
     ComboBox tag;
@@ -187,6 +187,20 @@ public class HelloFX extends Application {
         tableView.setItems(data);
         tableView1.setItems(data);
 
+        Label label8 = new Label("Startdate: ");
+        start = new DatePicker();
+        start.setPromptText("add startdate...");
+        start.setMinWidth(100);
+
+        Label label9 = new Label("Enddate: ");
+        end = new DatePicker();
+        end.setPromptText("date...");
+        end.setMinWidth(100);
+
+        final ObservableList<DisabledRange> rangesToDisable =
+                FXCollections.observableArrayList(new DisabledRange(start.getValue(),end.getValue())
+                        );
+
         FilteredList<Entries> filteredData = new FilteredList<>(data, e -> true);
         searchField.setOnKeyPressed(e -> {
             searchField.textProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -197,8 +211,15 @@ public class HelloFX extends Application {
                     String lowerCaseFilter = newValue.toLowerCase();
                     if (entries.getTitle().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    } else if (entries.getDate().toLowerCase().contains(lowerCaseFilter)) {
+                    }
+                    else if(rangesToDisable.stream()
+                            .filter(r->r.getInitialDate().minusDays(1).isBefore(date.getValue()))
+                            .filter(r->r.getEndDate().plusDays(1).isAfter(date.getValue()))
+                            .findAny()
+                            .isPresent()){
+                        if (entries.getDate().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
+                        }
                     } else if (entries.getLocation().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
                     } else if (entries.getText().toLowerCase().contains(lowerCaseFilter)) {
@@ -224,7 +245,7 @@ public class HelloFX extends Application {
         VBox vBox4 = new VBox();
         vBox4.setPadding(new Insets(10, 10, 10, 10));
         vBox4.setSpacing(10);
-        vBox4.getChildren().addAll(label6, searchField, tableView1, back3);
+        vBox4.getChildren().addAll(label6, searchField,label8,start,label9,end, tableView1, back3);
         scene3 = new Scene(vBox4, 1200, 750);
 
         window.setScene(scene);
@@ -247,8 +268,6 @@ public class HelloFX extends Application {
         tag.setValue(null);
         categoryText.clear();
         tableView.getItems().add(entries);
-
-
     }
 
     public void deleteButtonClicked() {
