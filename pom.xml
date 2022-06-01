@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>sample.diaryfx/sample.diaryfx.HelloApplication</mainClass>
+                            <mainClass>sample.diaryfx/at.jku.se.diary.HelloApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
