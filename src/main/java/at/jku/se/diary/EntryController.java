@@ -27,7 +27,7 @@ public class EntryController extends Controller implements Initializable {
     @FXML
     private TextArea textFld;
     @FXML
-    private RadioButton blod, italic;
+    private RadioButton bold, italic;
     @FXML
     private DatePicker dateFld;
     @FXML
@@ -59,7 +59,7 @@ public class EntryController extends Controller implements Initializable {
 
         String text = textFld.getText();
 
-        if(blod.isSelected()){
+        if(bold.isSelected()){
             textFld.setFont(Font.font(text, FontWeight.BOLD,13));
         }
         else if(italic.isSelected()){

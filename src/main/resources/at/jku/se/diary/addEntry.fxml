@@ -78,7 +78,7 @@
             <Insets />
          </VBox.margin>
          <children>
-            <RadioButton fx:id="blod" mnemonicParsing="false" onAction="#radioClicked" prefHeight="30.0" prefWidth="87.0" text="Blod">
+            <RadioButton fx:id="bold" mnemonicParsing="false" onAction="#radioClicked" prefHeight="30.0" prefWidth="87.0" text="Bold">
                <HBox.margin>
                   <Insets left="120.0" />
                </HBox.margin>
