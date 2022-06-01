@@ -14,15 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class DiaryEntryTest {
     
-   private final DiaryEntry e= new DiaryEntry("Visiting Acropolis");
 
-    /**
-     * Test of setTitle method, of class DiaryEntry.
-     */
-    @Test
-    void setTitle() {
-        e.setTitle("Going San Francisco");
-        assertEquals(e.getTitle(), "Going San Francisco");
-    }
     
 }
