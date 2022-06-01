@@ -3,6 +3,6 @@ module sample.diaryfx {
     requires javafx.fxml;
 
 
-    opens sample.diaryfx to javafx.fxml;
-    exports sample.diaryfx;
+    opens at.jku.se.diary to javafx.fxml;
+    exports at.jku.se.diary;
 }
