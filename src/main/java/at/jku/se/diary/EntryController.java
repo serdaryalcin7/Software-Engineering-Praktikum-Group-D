@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -35,11 +36,11 @@ public class EntryController extends Controller implements Initializable {
     @FXML
     private ComboBox<String> starComb;
     @FXML
-    private Image img1;
+    private ImageView img1;
     @FXML
-    private Image img2;
+    private ImageView img2;
     @FXML
-    private Image img3;
+    private ImageView img3;
     @FXML
     private Button save;
     @FXML
@@ -52,6 +53,7 @@ public class EntryController extends Controller implements Initializable {
 
         starComb.getItems().addAll("1","2","3","4","5");
         categoryComb.getItems().addAll("Hotel","Restaurant");
+
     }
 
     @FXML
@@ -64,6 +66,8 @@ public class EntryController extends Controller implements Initializable {
         }
         else if(italic.isSelected()){
             textFld.setFont(Font.font(text, FontPosture.ITALIC,13));
+        }else{
+            textFld.setFont(Font.font(text,13));
         }
     }
 

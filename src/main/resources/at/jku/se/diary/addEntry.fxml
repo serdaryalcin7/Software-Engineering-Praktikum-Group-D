@@ -146,25 +146,25 @@
             <Insets top="15.0" />
          </VBox.margin>
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img1" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
                <image>
-                  <Image url="@addfoto.png" />
+                  <Image url="@../../../../../java/at/jku/se/diary/addfoto.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="20.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img2" fitHeight="150.0" fitWidth="150.0" layoutX="20.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@addfoto.png" />
+                  <Image url="@../../../../../java/at/jku/se/diary/addfoto.png" />
                </image>
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="180.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img3" fitHeight="150.0" fitWidth="150.0" layoutX="180.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@addfoto.png" />
+                  <Image url="@../../../../../java/at/jku/se/diary/addfoto.png" />
                </image>
                <HBox.margin>
                   <Insets left="10.0" />
