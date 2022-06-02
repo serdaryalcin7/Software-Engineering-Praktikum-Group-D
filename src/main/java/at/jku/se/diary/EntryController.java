@@ -61,11 +61,14 @@ public class EntryController extends Controller implements Initializable {
 
         String text = textFld.getText();
 
-        if(bold.isSelected()){
-            textFld.setFont(Font.font(text, FontWeight.BOLD,13));
+        if(bold.isSelected() && italic.isSelected()){
+            textFld.setFont(Font.font(text,FontWeight.BOLD, FontPosture.ITALIC,13));
         }
-        else if(italic.isSelected()){
-            textFld.setFont(Font.font(text, FontPosture.ITALIC,13));
+        else if(italic.isSelected()) {
+            textFld.setFont(Font.font(text, FontPosture.ITALIC, 13));
+        }
+        else if(bold.isSelected()){
+                textFld.setFont(Font.font(text, FontWeight.BOLD,13));
         }else{
             textFld.setFont(Font.font(text,13));
         }
