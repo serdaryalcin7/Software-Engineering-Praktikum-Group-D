@@ -12,8 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -34,6 +36,8 @@ public class EntryController extends Controller implements Initializable {
     @FXML
     private ComboBox<String> categoryComb;
     @FXML
+    private TextField addCategory;
+    @FXML
     private ComboBox<String> starComb;
     @FXML
     private ImageView img1;
@@ -42,17 +46,20 @@ public class EntryController extends Controller implements Initializable {
     @FXML
     private ImageView img3;
     @FXML
-    private Button save;
+    private Button zoom1,zoom2,zoom3;
     @FXML
     private Button back;
 
-    DiaryEntry diaryEntry;
+    FileChooser chooser = new FileChooser();
+    static ImageView imageView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         starComb.getItems().addAll("1","2","3","4","5");
         categoryComb.getItems().addAll("Hotel","Restaurant");
+
+       // img1.setImage(new Image("src/main/java/at/jku/se/diary/addfoto.png"));
 
     }
 
@@ -72,6 +79,102 @@ public class EntryController extends Controller implements Initializable {
         }else{
             textFld.setFont(Font.font(text,13));
         }
+    }
+
+    @FXML
+    public void addInputTOCombo(ActionEvent event){
+        categoryComb.getItems().add(addCategory.getText());
+        addCategory.clear();
+    }
+    @FXML
+    public void removeComboBox(ActionEvent event){
+        categoryComb.getItems().remove(categoryComb.getValue());
+    }
+
+    @FXML
+    public void addFoto1(){
+        chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        chooser.getExtensionFilters().clear();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files","*.png","*.jpeg",".gif"));
+
+        File file = chooser.showOpenDialog(null);
+        if(file!=null){
+            img1.setImage(new Image(file.toURI().toString()));
+            imageView=img1;
+        }else{
+            System.out.println("...");
+        }
+    }
+
+    @FXML
+    public void addFoto2(ActionEvent event){
+        chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        chooser.getExtensionFilters().clear();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files","*.png","*.jpeg",".gif"));
+
+        File file = chooser.showOpenDialog(null);
+        if(file!=null){
+            img2.setImage(new Image(file.toURI().toString()));
+        }else{
+            System.out.println("...");
+        }
+    }
+
+    @FXML
+    public void addFoto3(ActionEvent event){
+        chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        chooser.getExtensionFilters().clear();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files","*.png","*.jpeg",".gif"));
+
+        File file = chooser.showOpenDialog(null);
+        if(file!=null){
+            img3.setImage(new Image(file.toURI().toString()));
+        }else{
+            System.out.println("...");
+        }
+    }
+
+    @FXML
+    public void deleteFoto1(ActionEvent event){
+        img1.setImage(null);
+    }
+    @FXML
+    public void deleteFoto2(ActionEvent event){
+        img2.setImage(null);
+    }
+    @FXML
+    public void deleteFoto3(ActionEvent event){
+        img3.setImage(null);
+    }
+
+    public void imageZoom1() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("imageview.fxml"));
+        Parent root = loader.load();
+        Stage window = (Stage) zoom1.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+
+         ImageController controller = loader.getController();
+         controller.getImage();
+    }
+
+    public void imageZoom2() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("imageview.fxml"));
+        Parent root = loader.load();
+        Stage window = (Stage) zoom2.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+
+        ImageController controller = loader.getController();
+        controller.getImage();
+    }
+
+    public void imageZoom3() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("imageview.fxml"));
+        Parent root = loader.load();
+        Stage window = (Stage) zoom3.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+
+        ImageController controller = loader.getController();
+        controller.getImage();
     }
 
     @FXML
@@ -100,8 +203,11 @@ public class EntryController extends Controller implements Initializable {
         categoryComb.setValue(null);
         starComb.setValue(null);
 
-    }
+        img1.setImage(null);
+        img2.setImage(null);
+        img3.setImage(null);
 
+    }
 
     @FXML
     private void handleOk() {
@@ -112,6 +218,7 @@ public class EntryController extends Controller implements Initializable {
         selectedForUpdate.setText(textFld.getText());
         selectedForUpdate.setCategory(categoryComb.getValue());
         selectedForUpdate.setStar(starComb.getValue());
+
     }
 
     public void showDiaryEntry(DiaryEntry selectedForUpdate){

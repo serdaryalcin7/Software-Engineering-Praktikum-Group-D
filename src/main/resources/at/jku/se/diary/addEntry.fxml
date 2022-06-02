@@ -7,9 +7,9 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -110,7 +110,22 @@
                   <Insets left="20.0" top="5.0" />
                </HBox.margin>
             </Text>
-            <ComboBox fx:id="categoryComb" editable="true" prefHeight="30.0" prefWidth="150.0" promptText="Catagory " style="-fx-background-color: dddddd;" />
+            <ComboBox fx:id="categoryComb" prefHeight="30.0" prefWidth="150.0" promptText="Catagory " style="-fx-background-color: dddddd;" />
+            <TextField fx:id="addCategory" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: dddddd;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#addInputTOCombo" text="+">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#removeComboBox" text="-">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
          <VBox.margin>
             <Insets top="15.0" />
@@ -146,38 +161,93 @@
             <Insets top="15.0" />
          </VBox.margin>
          <children>
-            <ImageView fx:id="img1" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img1" fitHeight="90.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="15.0" />
-               </HBox.margin>
-               <image>
-                  <Image url="@../../../../../java/at/jku/se/diary/addfoto.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="img2" fitHeight="150.0" fitWidth="150.0" layoutX="20.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../java/at/jku/se/diary/addfoto.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="30.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="img3" fitHeight="150.0" fitWidth="150.0" layoutX="180.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../java/at/jku/se/diary/addfoto.png" />
-               </image>
+            <ImageView fx:id="img2" fitHeight="90.0" fitWidth="130.0" layoutX="20.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="img3" fitHeight="90.0" fitWidth="130.0" layoutX="180.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="20.0" />
                </HBox.margin>
             </ImageView>
          </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="471.0" prefHeight="20.0" prefWidth="500.0">
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+         <children>
+            <Button fx:id="browse1" mnemonicParsing="false" onAction="#addFoto1" text="+">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteFoto1" text="-">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="zoom1" mnemonicParsing="false" onAction="#imageZoom1" prefHeight="27.0" prefWidth="55.0" text="zoom">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="browse2" mnemonicParsing="false" onAction="#addFoto2" text="+">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteFoto2" text="-">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="zoom2" mnemonicParsing="false" onAction="#imageZoom2" prefHeight="27.0" prefWidth="55.0" text="zoom">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="browse3" mnemonicParsing="false" onAction="#addFoto3" text="+">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteFoto3" text="-">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="zoom3" mnemonicParsing="false" onAction="#imageZoom3" prefHeight="27.0" prefWidth="55.0" text="zoom">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="25.0" prefWidth="200.0">
+         <children>
+            <Pane prefHeight="89.0" prefWidth="500.0" style="-fx-background-color: black;">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Pane>
+         </children>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
       </HBox>
       <HBox layoutX="10.0" layoutY="500.0" prefHeight="54.0" prefWidth="500.0">
          <padding>
             <Insets top="10.0" />
          </padding>
          <VBox.margin>
-            <Insets bottom="15.0" top="15.0" />
+            <Insets bottom="15.0" top="5.0" />
          </VBox.margin>
          <children>
             <Button fx:id="save" mnemonicParsing="false" onAction="#saveClicked" text="Save">
