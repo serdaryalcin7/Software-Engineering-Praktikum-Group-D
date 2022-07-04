@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,9 +11,55 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.ShowMapController">
+
+<VBox fx:id="root_vbox" prefHeight="622.0" prefWidth="944.0" stylesheets="@maps.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.ShowMapController">
    <children>
-      <Button fx:id="back" layoutX="356.0" layoutY="524.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
-      <WebView fx:id="wv" layoutX="-62.0" layoutY="-33.0" prefHeight="479.0" prefWidth="897.0" />
+      <HBox>
+         <children>
+            <Label text="Zoom">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#zoomOut" text="-">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Slider fx:id="zoom_slider">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Slider>
+            <Button mnemonicParsing="false" onAction="#zoomIn" text="+">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <SplitPane dividerPositions="0.23745819397993312" VBox.vgrow="ALWAYS">
+         <items>
+            <ListView fx:id="map_listview" onMouseClicked="#listClicked" prefHeight="398.0" prefWidth="0.0" />
+            <ScrollPane fx:id="map_scrollpane" prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <Pane>
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../../../../../../map.png" />
+                           </image>
+                        </ImageView>
+                        <MenuButton fx:id="map_pin" layoutX="102.0" layoutY="162.0" mnemonicParsing="false" styleClass="map-pin">
+                          <items>
+                            <MenuItem fx:id="pin_info" mnemonicParsing="false" text="Action 1" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                  </Pane>
+               </content>
+            </ScrollPane>
+         </items>
+      </SplitPane>
    </children>
-</AnchorPane>
+</VBox>

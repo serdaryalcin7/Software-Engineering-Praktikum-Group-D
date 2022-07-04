@@ -1,3 +1,4 @@
+
 module sample.diaryfx {
     requires javafx.controls;
     requires javafx.fxml;
