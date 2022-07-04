@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.ShowMapController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.ShowMapController">
    <children>
-      <Button fx:id="back" layoutX="356.0" layoutY="524.0" mnemonicParsing="false" onAction="#backClicked" text="Button" />
-      <WebView layoutX="54.0" layoutY="94.0" prefHeight="303.0" prefWidth="642.0" />
+      <Button fx:id="back" layoutX="356.0" layoutY="524.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
+      <WebView fx:id="wv" layoutX="-62.0" layoutY="-33.0" prefHeight="479.0" prefWidth="897.0" />
    </children>
 </AnchorPane>

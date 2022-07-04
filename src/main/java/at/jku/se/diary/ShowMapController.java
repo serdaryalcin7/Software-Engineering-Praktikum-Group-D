@@ -24,11 +24,21 @@ public class ShowMapController extends Controller implements Initializable {
     @FXML
     private Button back;
 
+    @FXML
+    private WebView wv;
+
+    private WebEngine engine;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        this.engine = this.wv.getEngine();
+        this.engine.load("https://www.google.at/maps");
+
     }
+
+
 
     public void backClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainview.fxml"));
