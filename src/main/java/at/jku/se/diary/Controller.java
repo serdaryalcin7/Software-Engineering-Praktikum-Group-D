@@ -17,24 +17,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class Controller implements Initializable{
+public class Controller implements Initializable {
 
     @FXML
     private TableView<DiaryEntry> entryTableView;
     @FXML
-    private TableColumn<DiaryEntry,String> titleCol;
+    private TableColumn<DiaryEntry, String> titleCol;
     @FXML
-    private TableColumn<DiaryEntry,String> locationCol;
+    private TableColumn<DiaryEntry, String> locationCol;
     @FXML
-    private TableColumn<DiaryEntry,String> dateCol;
+    private TableColumn<DiaryEntry, String> dateCol;
     @FXML
-    private TableColumn<DiaryEntry,String> textCol;
+    private TableColumn<DiaryEntry, String> textCol;
     @FXML
-    private TableColumn<DiaryEntry,String> categoryCol;
+    private TableColumn<DiaryEntry, String> categoryCol;
     @FXML
-    private TableColumn<DiaryEntry,String> starCol;
+    private TableColumn<DiaryEntry, String> starCol;
     @FXML
-    private Button addEntry,update,delete, searchEntry, showMap;
+    private Button addEntry, update, delete, searchEntry, showMap;
 
     static ObservableList<DiaryEntry> diaryEntryList = FXCollections.observableArrayList();
     static DiaryEntry selectedForUpdate;
@@ -81,7 +81,7 @@ public class Controller implements Initializable{
         entrySelected.forEach(allEntries::remove);
     }
 
-    public void updateClicked() throws IOException{
+    public void updateClicked() throws IOException {
 
         selectedForUpdate = entryTableView.getSelectionModel().getSelectedItem();
 
@@ -96,10 +96,9 @@ public class Controller implements Initializable{
 
     @FXML
     public void showMapClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("showMap.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("showMap.fxml"));
+        Parent root = loader.load();
         Stage window = (Stage) showMap.getScene().getWindow();
         window.setScene(new Scene(root, 1000, 700));
     }
-
-
 }
