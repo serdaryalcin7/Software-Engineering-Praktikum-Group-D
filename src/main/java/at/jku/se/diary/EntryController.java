@@ -40,7 +40,7 @@ public class EntryController extends Controller implements Initializable {
     @FXML
     private ComboBox<String> starComb;
     @FXML
-    private ImageView img1;
+    private ImageView img1,zoom;
     @FXML
     private ImageView img2;
     @FXML
@@ -148,40 +148,22 @@ public class EntryController extends Controller implements Initializable {
     }
 
     public void imageZoom1() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("imageview.fxml"));
-        Parent root = loader.load();
-        Stage window = (Stage) zoom1.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
-
-         ImageController controller = loader.getController();
-         controller.getImage();
+        zoom.setImage(img1.getImage());
     }
 
     public void imageZoom2() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("imageview.fxml"));
-        Parent root = loader.load();
-        Stage window = (Stage) zoom2.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
-
-        ImageController controller = loader.getController();
-        controller.getImage();
+        zoom.setImage(img2.getImage());
     }
 
     public void imageZoom3() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("imageview.fxml"));
-        Parent root = loader.load();
-        Stage window = (Stage) zoom3.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
-
-        ImageController controller = loader.getController();
-        controller.getImage();
+        zoom.setImage(img3.getImage());
     }
 
     @FXML
      public void backClicked() throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("mainview.fxml"));
          Stage window = (Stage) back.getScene().getWindow();
-         window.setScene(new Scene(root, 800, 500));
+         window.setScene(new Scene(root, 1000, 700));
     }
 
     @FXML

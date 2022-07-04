@@ -63,14 +63,14 @@ public class Controller implements Initializable{
     public void getAddView() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("addEntry.fxml"));
         Stage window = (Stage) addEntry.getScene().getWindow();
-        window.setScene(new Scene(root, 500, 650));
+        window.setScene(new Scene(root, 1000, 700));
     }
 
     @FXML
     public void getSearchView() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("searchEntry.fxml"));
         Stage window = (Stage) searchEntry.getScene().getWindow();
-        window.setScene(new Scene(root, 800, 500));
+        window.setScene(new Scene(root, 1000, 700));
     }
 
     @FXML
@@ -88,7 +88,7 @@ public class Controller implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("addEntry.fxml"));
         Parent root = loader.load();
         Stage window = (Stage) update.getScene().getWindow();
-        window.setScene(new Scene(root, 500, 650));
+        window.setScene(new Scene(root, 1000, 700));
 
         EntryController controller = (EntryController) loader.getController();
         controller.showDiaryEntry(selectedForUpdate);

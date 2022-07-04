@@ -92,7 +92,7 @@ public class SearchController extends Controller implements Initializable {
     public void backClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainview.fxml"));
         Stage window = (Stage) back.getScene().getWindow();
-        window.setScene(new Scene(root, 800, 500));
+        window.setScene(new Scene(root, 1000, 700));
     }
 
 }
