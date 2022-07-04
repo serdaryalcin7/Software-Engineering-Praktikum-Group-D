@@ -94,5 +94,12 @@ public class Controller implements Initializable{
         controller.showDiaryEntry(selectedForUpdate);
     }
 
+    @FXML
+    public void showMapClicked() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("showMap.fxml"));
+        Stage window = (Stage) showMap.getScene().getWindow();
+        window.setScene(new Scene(root, 1000, 700));
+    }
+
 
 }
