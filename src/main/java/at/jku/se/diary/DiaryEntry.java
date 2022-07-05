@@ -30,6 +30,10 @@ public class DiaryEntry {
             this.star = new SimpleStringProperty(star);
         }
 
+    public DiaryEntry(String location) {
+       this.location = new SimpleStringProperty(location);
+    }
+
     public String getTitle() {
         return title.get();
     }

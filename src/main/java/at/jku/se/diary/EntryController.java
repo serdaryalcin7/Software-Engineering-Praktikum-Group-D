@@ -178,6 +178,7 @@ public class EntryController extends Controller implements Initializable {
         String star = starComb.getValue();
 
         Controller.diaryEntryList.add(new DiaryEntry(title,location,date,text,category,description,star));
+        ShowMapController.diaryEntryList.add(new DiaryEntry(location));
 
         titleFld.clear();
         locationFld.clear();

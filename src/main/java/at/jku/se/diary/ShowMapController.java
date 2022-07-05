@@ -12,6 +12,8 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,13 +32,18 @@ public class ShowMapController {
 
 
     @FXML
+    private ImageView map;
+    @FXML
     private Button back;
     @FXML
     private VBox root_vbox;
 
     @FXML
 
-    private ListView<String> map_listview;
+    private TableView<DiaryEntry> map_listview;
+
+    @FXML
+    private TableColumn<DiaryEntry, String> locationId;
 
     @FXML
 
@@ -54,22 +61,31 @@ public class ShowMapController {
 
     private MenuItem pin_info;
 
-    @FXML
+    static ObservableList<DiaryEntry> diaryEntryList = FXCollections.observableArrayList();
 
-    private ToggleButton contrast_togglebutton;
-
-    @FXML
-
-    private ToggleButton size_togglebutton;
 
     private final HashMap<String, ArrayList<Comparable<?>>> hm = new HashMap<>();
 
     Group zoomGroup;
 
+private void initCol(){
+    locationId.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
+}
 
+    private void loadData() {
+
+        map_listview.setItems(diaryEntryList);
+    }
 
            @FXML
            void initialize() {
+                initCol();
+                loadData();
+               Image image = new Image("C:\\Users\\Serda\\Desktop\\DiaryBabaFX\\src\\main\\java\\at\\jku\\se\\diary\\map.png");
+
+               map.setImage(image);
+               map.setCache(true);
+
 
                 System.out.println("airportapp.Controller.initialize");
 
@@ -77,9 +93,6 @@ public class ShowMapController {
 
                 assert root_vbox != null : "fx:id=\"root_vbox\" was not injected: check your FXML file 'airportapp.fxml'.";
 
-                assert contrast_togglebutton != null : "fx:id=\"contrast_togglebutton\" was not injected: check your FXML file 'airportapp.fxml'.";
-
-                assert size_togglebutton != null : "fx:id=\"size_togglebutton\" was not injected: check your FXML file 'airportapp.fxml'.";
 
                 assert map_scrollpane != null : "fx:id=\"map_scrollpane\" was not injected: check your FXML file 'airportapp.fxml'.";
 
@@ -90,7 +103,7 @@ public class ShowMapController {
                 assert zoom_slider != null : "fx:id=\"zoom_slider\" was not injected: check your FXML file 'airportapp.fxml'.";
 
 
-                hm.put("Byron", new ArrayList<>(Arrays.asList(1849.0, 623.0, "Code: C83\nElevation:")));
+                hm.put("Byron", new ArrayList<>(Arrays.asList(18.0, 62.0, "Code: C83\nElevation:")));
 
                 hm.put("Gnoss Field", new ArrayList<>(Arrays.asList(558.0, 79.0, "Code: KDVO\nElevation: 2ft")));
 
@@ -130,9 +143,9 @@ public class ShowMapController {
 
                 }
 
-                Collections.sort(names);
 
-                map_listview.setItems(names);
+
+
 
                 map_pin.setVisible(false);
 
@@ -163,7 +176,6 @@ public class ShowMapController {
 
                         System.out.println("airportapp.Controller.initialize, device detected");
 
-                        size_togglebutton.setSelected(true);
 
                         root_vbox.getStyleClass().add("touch-sizes");
 
@@ -181,7 +193,7 @@ public class ShowMapController {
 
             void listClicked(MouseEvent event) {
 
-               String item = map_listview.getSelectionModel().getSelectedItem();
+               DiaryEntry item = map_listview.getSelectionModel().getSelectedItem();
 
                List<Comparable<?>> list = hm.get(item);
 
