@@ -7,27 +7,32 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 import javafx.application.ConditionalFeature;
-
 import javafx.application.Platform;
-
 import javafx.geometry.Rectangle2D;
-
 import javafx.stage.Screen;
 
 
 
-        public class ShowMapController {
+public class ShowMapController {
 
-            @FXML
-            private VBox root_vbox;
+
+    @FXML
+    private Button back;
+    @FXML
+    private VBox root_vbox;
 
     @FXML
 
@@ -43,7 +48,7 @@ import javafx.stage.Screen;
 
     @FXML
 
-   private MenuButton map_pin;
+    private MenuButton map_pin;
 
     @FXML
 
@@ -51,33 +56,28 @@ import javafx.stage.Screen;
 
     @FXML
 
-   private ToggleButton contrast_togglebutton;
+    private ToggleButton contrast_togglebutton;
 
     @FXML
 
     private ToggleButton size_togglebutton;
 
-
-
-            private final HashMap<String, ArrayList<Comparable<?>>> hm = new HashMap<>();
+    private final HashMap<String, ArrayList<Comparable<?>>> hm = new HashMap<>();
 
     Group zoomGroup;
 
 
 
            @FXML
-
-    void initialize() {
+           void initialize() {
 
                 System.out.println("airportapp.Controller.initialize");
 
-
-
-                       assert map_listview != null : "fx:id=\"map_listview\" was not injected: check your FXML file 'airportapp.fxml'.";
+                assert map_listview != null : "fx:id=\"map_listview\" was not injected: check your FXML file 'airportapp.fxml'.";
 
                 assert root_vbox != null : "fx:id=\"root_vbox\" was not injected: check your FXML file 'airportapp.fxml'.";
 
-               assert contrast_togglebutton != null : "fx:id=\"contrast_togglebutton\" was not injected: check your FXML file 'airportapp.fxml'.";
+                assert contrast_togglebutton != null : "fx:id=\"contrast_togglebutton\" was not injected: check your FXML file 'airportapp.fxml'.";
 
                 assert size_togglebutton != null : "fx:id=\"size_togglebutton\" was not injected: check your FXML file 'airportapp.fxml'.";
 
@@ -85,17 +85,16 @@ import javafx.stage.Screen;
 
                 assert map_pin != null : "fx:id=\"map_pin\" was not injected: check your FXML file 'airportapp.fxml'.";
 
-               assert pin_info != null : "fx:id=\"pin_info\" was not injected: check your FXML file 'airportapp.fxml'.";
+                assert pin_info != null : "fx:id=\"pin_info\" was not injected: check your FXML file 'airportapp.fxml'.";
 
                 assert zoom_slider != null : "fx:id=\"zoom_slider\" was not injected: check your FXML file 'airportapp.fxml'.";
 
 
-
                 hm.put("Byron", new ArrayList<>(Arrays.asList(1849.0, 623.0, "Code: C83\nElevation:")));
 
-               hm.put("Gnoss Field", new ArrayList<>(Arrays.asList(558.0, 79.0, "Code: KDVO\nElevation: 2ft")));
+                hm.put("Gnoss Field", new ArrayList<>(Arrays.asList(558.0, 79.0, "Code: KDVO\nElevation: 2ft")));
 
-               hm.put("Half Moon Bay", new ArrayList<>(Arrays.asList(627.0, 1172.0, "Code: KHAF\nElevation: 66ft")));
+                hm.put("Half Moon Bay", new ArrayList<>(Arrays.asList(627.0, 1172.0, "Code: KHAF\nElevation: 66ft")));
 
                 hm.put("Hayward Executive", new ArrayList<>(Arrays.asList(1010.0, 807.0, "Code: KHWD\nElevation: 52ft")));
 
@@ -103,23 +102,22 @@ import javafx.stage.Screen;
 
                 hm.put("Metropolitan Oakland Intl", new ArrayList<>(Arrays.asList(1009.0, 807.0, "Code: KOAK\nElevation: 9ft")));
 
-               hm.put("Moffet Federal Airfield", new ArrayList<>(Arrays.asList(1265.0, 1351.0, "Code: KNUQ\nElevation: 32ft")));
+                hm.put("Moffet Federal Airfield", new ArrayList<>(Arrays.asList(1265.0, 1351.0, "Code: KNUQ\nElevation: 32ft")));
 
                 hm.put("Palo Alto", new ArrayList<>(Arrays.asList(1164.0, 1271.0, "Code: KPAO\nElevation: 7ft")));
 
-               hm.put("Reid-Hillview", new ArrayList<>(Arrays.asList(1578.0, 1494.0, "Code: KRHV\nElevation: 135ft")));
+                hm.put("Reid-Hillview", new ArrayList<>(Arrays.asList(1578.0, 1494.0, "Code: KRHV\nElevation: 135ft")));
 
                 hm.put("San Carlos", new ArrayList<>(Arrays.asList(977.0, 1156.0, "Code: KSQL\nElevation: 52ft")));
 
                 hm.put("San Francisco Intl", new ArrayList<>(Arrays.asList(808.0, 992.0, "Code: KSFO\nElevation: 13ft")));
 
-               hm.put("San Jose Intl", new ArrayList<>(Arrays.asList(1425.0, 1438.0, "Code: KSJC\nElevation: 62ft")));
+                hm.put("San Jose Intl", new ArrayList<>(Arrays.asList(1425.0, 1438.0, "Code: KSJC\nElevation: 62ft")));
 
                 hm.put("San Martin", new ArrayList<>(Arrays.asList(1879.0, 1925.0, "Code: E16\nElevation: 281ft")));
 
 
-
-                        ObservableList<String> names = FXCollections.observableArrayList();
+                ObservableList<String> names = FXCollections.observableArrayList();
 
                 Set<Entry<String, ArrayList<Comparable<?>>>> set = hm.entrySet();
 
@@ -128,20 +126,15 @@ import javafx.stage.Screen;
                 while (i.hasNext()) {
 
                         Map.Entry<String, ArrayList<Comparable<?>>> me = i.next();
-
                         names.add((String) me.getKey());
 
-                    }
+                }
 
                 Collections.sort(names);
-
-
 
                 map_listview.setItems(names);
 
                 map_pin.setVisible(false);
-
-
 
                 zoom_slider.setMin(0.5);
 
@@ -151,10 +144,9 @@ import javafx.stage.Screen;
 
                 zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
 
+                // Wrap scroll content in a Group so ScrollPane re-computes scroll bars
 
-                        // Wrap scroll content in a Group so ScrollPane re-computes scroll bars
-
-                               Group contentGroup = new Group();
+                Group contentGroup = new Group();
 
                 zoomGroup = new Group();
 
@@ -165,42 +157,37 @@ import javafx.stage.Screen;
                 map_scrollpane.setContent(contentGroup);
 
 
-
                        // Add large UI styling and make full screen if we are on device
 
-                              if (Platform.isSupported(ConditionalFeature.INPUT_TOUCH)) {
+               if (Platform.isSupported(ConditionalFeature.INPUT_TOUCH)) {
 
                         System.out.println("airportapp.Controller.initialize, device detected");
 
-                       size_togglebutton.setSelected(true);
+                        size_togglebutton.setSelected(true);
 
                         root_vbox.getStyleClass().add("touch-sizes");
 
-                       Screen screen = Screen.getPrimary();
+                        Screen screen = Screen.getPrimary();
 
-                       Rectangle2D bounds = screen.getVisualBounds();
+                        Rectangle2D bounds = screen.getVisualBounds();
 
-                       root_vbox.setPrefSize(bounds.getWidth(), bounds.getHeight());
+                        root_vbox.setPrefSize(bounds.getWidth(), bounds.getHeight());
 
                     }
 
            }
 
-
-
             @FXML
 
-    void listClicked(MouseEvent event) {
+            void listClicked(MouseEvent event) {
 
                String item = map_listview.getSelectionModel().getSelectedItem();
 
                List<Comparable<?>> list = hm.get(item);
 
+                // animation scroll to new position
 
-
-                       // animation scroll to new position
-
-                                double mapWidth = zoomGroup.getBoundsInLocal().getWidth();
+                double mapWidth = zoomGroup.getBoundsInLocal().getWidth();
 
                 double mapHeight = zoomGroup.getBoundsInLocal().getHeight();
 
@@ -221,14 +208,13 @@ import javafx.stage.Screen;
                 timeline.play();
 
 
+                //move the pin and set it's info
 
-                        // move the pin and set it's info
-
-                                double pinW = map_pin.getBoundsInLocal().getWidth();
+                double pinW = map_pin.getBoundsInLocal().getWidth();
 
                 double pinH = map_pin.getBoundsInLocal().getHeight();
 
-               map_pin.setLayoutX((Double) list.get(0) - (pinW / 2));
+                map_pin.setLayoutX((Double) list.get(0) - (pinW / 2));
 
                 map_pin.setLayoutY((Double) list.get(1) - (pinH));
 
@@ -239,52 +225,46 @@ import javafx.stage.Screen;
             }
 
 
-
             @FXML
+            void zoomIn(ActionEvent event) {
 
-    void zoomIn(ActionEvent event) {
+              //System.out.println("airportapp.Controller.zoomIn");
 
-        //    System.out.println("airportapp.Controller.zoomIn");
+              double sliderVal = zoom_slider.getValue();
 
-                        double sliderVal = zoom_slider.getValue();
-
-                zoom_slider.setValue(sliderVal += 0.1);
+              zoom_slider.setValue(sliderVal += 0.1);
 
             }
 
-
-
             @FXML
+            void zoomOut(ActionEvent event) {
+              //System.out.println("airportapp.Controller.zoomOut");
 
-    void zoomOut(ActionEvent event) {
-
-        //    System.out.println("airportapp.Controller.zoomOut");
-
-                        double sliderVal = zoom_slider.getValue();
-
+                double sliderVal = zoom_slider.getValue();
                 zoom_slider.setValue(sliderVal + -0.1);
 
            }
-
-
-
            private void zoom(double scaleValue) {
 
-        //    System.out.println("airportapp.Controller.zoom, scaleValue: " + scaleValue);
+        //System.out.println("airportapp.Controller.zoom, scaleValue: " + scaleValue);
+               double scrollH = map_scrollpane.getHvalue();
 
-                        double scrollH = map_scrollpane.getHvalue();
+               double scrollV = map_scrollpane.getVvalue();
 
-                double scrollV = map_scrollpane.getVvalue();
-
-                zoomGroup.setScaleX(scaleValue);
+               zoomGroup.setScaleX(scaleValue);
 
                zoomGroup.setScaleY(scaleValue);
 
                map_scrollpane.setHvalue(scrollH);
 
-                map_scrollpane.setVvalue(scrollV);
+               map_scrollpane.setVvalue(scrollV);
 
             }
+    @FXML
+    public void backClicked() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("mainview.fxml"));
+        Stage window = (Stage) back.getScene().getWindow();
+        window.setScene(new Scene(root, 1000, 700));
+    }
 
-
-        }
+}

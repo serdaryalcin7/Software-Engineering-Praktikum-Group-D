@@ -76,6 +76,12 @@ public class Controller implements Initializable{
     }
 
     @FXML
+    public void showMapClicked() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("showMap.fxml"));
+        Stage window = (Stage) showMap.getScene().getWindow();
+        window.setScene(new Scene(root, 1000, 700));
+    }
+    @FXML
     public void getSearchView() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("searchEntry.fxml"));
         Stage window = (Stage) searchEntry.getScene().getWindow();
@@ -106,8 +112,7 @@ public class Controller implements Initializable{
     @FXML
     private void handleSaveAs() {
         try {
-            JAXBContext context = JAXBContext
-                    .newInstance(MyWrapperForList.class);
+            JAXBContext context = JAXBContext.newInstance(MyWrapperForList.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 

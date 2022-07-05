@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
 
-
 <VBox fx:id="root_vbox" prefHeight="622.0" prefWidth="944.0" stylesheets="@maps.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.ShowMapController">
    <children>
       <HBox>
@@ -61,5 +60,6 @@
             </ScrollPane>
          </items>
       </SplitPane>
+      <Button fx:id="back" mnemonicParsing="false" onAction="#backClicked" text="Back" />
    </children>
 </VBox>
