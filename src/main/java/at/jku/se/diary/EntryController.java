@@ -38,6 +38,8 @@ public class EntryController extends Controller implements Initializable {
     @FXML
     private TextField addCategory;
     @FXML
+    private TextArea descFld;
+    @FXML
     private ComboBox<String> starComb;
     @FXML
     private ImageView img1,zoom;
@@ -58,8 +60,6 @@ public class EntryController extends Controller implements Initializable {
 
         starComb.getItems().addAll("1","2","3","4","5");
         categoryComb.getItems().addAll("Hotel","Restaurant");
-
-       // img1.setImage(new Image("src/main/java/at/jku/se/diary/addfoto.png"));
 
     }
 
@@ -174,15 +174,17 @@ public class EntryController extends Controller implements Initializable {
         LocalDate date = dateFld.getValue();
         String text = textFld.getText();
         String category = categoryComb.getValue();
+        String description = descFld.getText();
         String star = starComb.getValue();
 
-        Controller.diaryEntryList.add(new DiaryEntry(title,location,date,text,category,star));
+        Controller.diaryEntryList.add(new DiaryEntry(title,location,date,text,category,description,star));
 
         titleFld.clear();
         locationFld.clear();
         dateFld.setValue(null);
         textFld.clear();
         categoryComb.setValue(null);
+        descFld.clear();
         starComb.setValue(null);
 
         img1.setImage(null);
@@ -199,6 +201,7 @@ public class EntryController extends Controller implements Initializable {
         selectedForUpdate.setDate(dateFld.getValue());
         selectedForUpdate.setText(textFld.getText());
         selectedForUpdate.setCategory(categoryComb.getValue());
+        selectedForUpdate.setDescription(descFld.getText());
         selectedForUpdate.setStar(starComb.getValue());
 
     }
@@ -210,6 +213,7 @@ public class EntryController extends Controller implements Initializable {
         dateFld.setValue(selectedForUpdate.getDate());
         textFld.setText(selectedForUpdate.getText());
         categoryComb.setValue(selectedForUpdate.getCategory());
+        descFld.setText(selectedForUpdate.getText());
         starComb.setValue(selectedForUpdate.getStar());
 
     }

@@ -26,8 +26,9 @@
             <TableColumn fx:id="titleCol" prefWidth="120.0" text="TITLE" />
             <TableColumn fx:id="locationCol" prefWidth="120.0" text="LOCATION" />
             <TableColumn fx:id="dateCol" prefWidth="120.0" text="DATE" />
-            <TableColumn fx:id="textCol" prefWidth="300.0" text="TEXT" />
-            <TableColumn fx:id="categoryCol" prefWidth="90.0" text="CATEGORY" />
+            <TableColumn fx:id="textCol" prefWidth="200.0" text="TEXT" />
+            <TableColumn fx:id="categoryCol" prefWidth="120.0" text="CATEGORY" />
+            <TableColumn fx:id="descrCol" prefWidth="150.0" text="DESCRIPTION" />
             <TableColumn fx:id="starCol" prefWidth="120.0" text="STAR" />
          </columns>
       </TableView>
@@ -38,7 +39,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="titlesearch" prefHeight="27.0" prefWidth="170.0" />
+            <TextField fx:id="titlesearch" prefHeight="27.0" prefWidth="150.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LOCATION: " wrappingWidth="100.0">
                <font>
                   <Font size="18.0" />
@@ -85,6 +86,15 @@
                </HBox.margin>
             </Text>
             <ComboBox fx:id="categorysearch" editable="true" prefWidth="170.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DESCRIPTION: " wrappingWidth="123.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Text>
+            <TextField fx:id="descrsearch" prefHeight="27.0" prefWidth="150.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="STAR:" wrappingWidth="55.0">
                <font>
                   <Font size="18.0" />

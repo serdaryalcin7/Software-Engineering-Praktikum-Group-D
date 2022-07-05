@@ -27,6 +27,8 @@ public class SearchController extends Controller implements Initializable {
     @FXML
     private TableColumn<DiaryEntry,String> categoryCol;
     @FXML
+    private TableColumn<DiaryEntry,String> descrCol;
+    @FXML
     private TableColumn<DiaryEntry,String> starCol;
     @FXML
     private TextField titlesearch;
@@ -40,6 +42,8 @@ public class SearchController extends Controller implements Initializable {
     private DatePicker utilsearch;
     @FXML
     private ComboBox<String> categorysearch;
+    @FXML
+    private TextField descrsearch;
     @FXML
     private ComboBox<String> starsearch;
     @FXML
@@ -56,6 +60,7 @@ public class SearchController extends Controller implements Initializable {
         dateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty().asString());
         textCol.setCellValueFactory(cellData -> cellData.getValue().textProperty());
         categoryCol.setCellValueFactory(cellData -> cellData.getValue().categoryProperty());
+        descrCol.setCellValueFactory(cellData -> cellData.getValue().textProperty());
         starCol.setCellValueFactory(cellData -> cellData.getValue().starProperty());
         searchTableView.setItems(Controller.diaryEntryList);
 
@@ -79,6 +84,9 @@ public class SearchController extends Controller implements Initializable {
         });
         categorysearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
             filterList.setPredicate(entries -> entries.getCategory().contains(categorysearch.getValue()));
+        });
+        descrsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
+            filterList.setPredicate(entries -> entries.getText().contains(descrsearch.getText()));
         });
         starsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
             filterList.setPredicate(entries -> entries.getStar().contains(starsearch.getValue()));

@@ -1,8 +1,9 @@
-
 module sample.diaryfx {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+    requires java.xml.bind;
+    requires java.prefs;
+
 
 
     opens at.jku.se.diary to javafx.fxml;

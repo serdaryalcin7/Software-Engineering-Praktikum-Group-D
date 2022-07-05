@@ -15,16 +15,18 @@ public class DiaryEntry {
         private ObjectProperty<LocalDate> date;
         private StringProperty text;
         private StringProperty category;
+        private StringProperty description;
         private StringProperty star;
 
     public DiaryEntry(){}
 
-        public DiaryEntry(String title, String location, LocalDate date, String text, String category, String star) {
+        public DiaryEntry(String title, String location, LocalDate date, String text, String category,String description, String star) {
             this.title = new SimpleStringProperty(title);
             this.location = new SimpleStringProperty(location);
             this.date = new SimpleObjectProperty<LocalDate>(date);
             this.text = new SimpleStringProperty(text);
             this.category = new SimpleStringProperty(category);
+            this.description = new SimpleStringProperty(description);
             this.star = new SimpleStringProperty(star);
         }
 
@@ -86,6 +88,18 @@ public class DiaryEntry {
 
     public void setCategory(String category) {
         this.category.set(category);
+    }
+
+    public String getDescription() {
+        return description.get();
+    }
+
+    public StringProperty DescriptionProperty() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description.set(description);
     }
 
     public String getStar() {
