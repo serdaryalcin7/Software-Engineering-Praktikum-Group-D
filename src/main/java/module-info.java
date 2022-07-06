@@ -3,7 +3,7 @@ module sample.diaryfx {
     requires javafx.fxml;
     requires java.xml.bind;
     requires java.prefs;
-
+    requires javafx.web;
 
 
     opens at.jku.se.diary to javafx.fxml;
