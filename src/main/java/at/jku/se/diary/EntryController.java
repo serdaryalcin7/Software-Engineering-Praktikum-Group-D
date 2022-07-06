@@ -218,8 +218,22 @@ public class EntryController extends Controller implements Initializable {
         starComb.setValue(selectedForUpdate.getStar());
 
     }
-    
 
+    public TextField getAddCategory() {
+        return addCategory;
+    }
+
+    public void setAddCategory(TextField addCategory) {
+        this.addCategory = addCategory;
+    }
+
+    public ComboBox<String> getCategoryComb() {
+        return categoryComb;
+    }
+
+    public void setCategoryComb(ComboBox<String> categoryComb) {
+        this.categoryComb = categoryComb;
+    }
 }
 
 
