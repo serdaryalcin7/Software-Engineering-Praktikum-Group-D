@@ -35,7 +35,7 @@ class DiaryEntryTest {
     void setTitle() {
 
         t1.setTitle("title");
-        assertEquals("title", t1.getTitle());
+        assertEquals(t1.getTitle(), "title");
         assertNotEquals(t1.getTitle(), null);
 
     }
@@ -43,8 +43,7 @@ class DiaryEntryTest {
     void setLocation() {
 
         t1.setLocation("loc");
-        assertEquals("loc", t1.getLocation());
-        assertNotEquals(t1.getLocation(), null);
+        assertEquals(t1.getLocation(),"loc" );
 
     }
     @Test
@@ -52,7 +51,6 @@ class DiaryEntryTest {
 
         t1.setDate(LocalDate.now());
         assertEquals(LocalDate.now(), t1.getDate());
-        assertNotEquals(t1.getDate(),null);
 
     }
 
@@ -60,40 +58,35 @@ class DiaryEntryTest {
     void setText() {
 
         t1.setText("text");
-        assertEquals("text", t1.getText());
-        assertNotEquals(t1.getText(), null);
+        assertEquals( t1.getText(),"text");
 
     }
     @Test
     void setCategory() {
 
         t1.setCategory("Restaurant");
-        assertEquals("Restaurant", t1.getCategory());
-        assertNotEquals(null,t1.getCategory());
+        assertEquals(t1.getCategory(),"Restaurant");
 
     }
     @Test
     void setDescription() {
 
         t1.setDescription("desc");
-        assertEquals("desc", t1.getDescription());
-        assertNotEquals(t1.getDescription(), null);
+        assertEquals(t1.getDescription(),"desc");
 
     }
     @Test
     void setStar() {
 
         t1.setStar("3");
-        assertEquals("3", t1.getStar());
-        assertNotEquals(t1.getStar(), null);
+        assertEquals( t1.getStar(),"3");
 
     }
     @Test
     void testDescription(){
 
         t1.setDescription("Super cool Hotel");
-        assertEquals("Super cool Hotel", t1.getDescription());
-        assertNotEquals(t1.getDescription(), null);
+        assertEquals(t1.getDescription(),"Super cool Hotel");
 
     }
     @Test
@@ -101,8 +94,7 @@ class DiaryEntryTest {
 
         t1.setText("new Category");
         t1.setCategory(t1.getText());
-        assertEquals(t1.getText(),t1.getCategory());
-        assertNotEquals(t1.getCategory(), null);
+        assertEquals(t1.getCategory(),t1.getText());
 
     }
 
@@ -111,8 +103,7 @@ class DiaryEntryTest {
 
         t1.setText(null);
         t1.setCategory(t1.getText());
-        assertEquals(t1.getText(),t1.getCategory());
-        assertNotEquals("Hotel", t1.getCategory());
+        assertEquals(t1.getCategory(),t1.getText());
 
     }
 
