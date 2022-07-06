@@ -11,12 +11,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -54,13 +56,13 @@ public class Controller implements Initializable{
     }
 
     private void initCol() {
-        titleCol.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
-        locationCol.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
-        dateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty().asString());
-        textCol.setCellValueFactory(cellData -> cellData.getValue().textProperty());
-        categoryCol.setCellValueFactory(cellData -> cellData.getValue().categoryProperty());
-        descrCol.setCellValueFactory(cellData -> cellData.getValue().textProperty());
-        starCol.setCellValueFactory(cellData -> cellData.getValue().starProperty());
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        textCol.setCellValueFactory(new PropertyValueFactory<>("text"));
+        categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        descrCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        starCol.setCellValueFactory(new PropertyValueFactory<>("star"));
     }
 
     private void loadData() {
@@ -110,24 +112,8 @@ public class Controller implements Initializable{
     }
 
     @FXML
+
     private void handleSaveAs() {
-        try {
-            JAXBContext context = JAXBContext.newInstance(MyWrapperForList.class);
-            Marshaller m = context.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            MyWrapperForList wrapper = new MyWrapperForList();
-            wrapper.setDiaryEntries(diaryEntryList);
-            m.marshal(wrapper, new FileOutputStream("beispiel.xml"));
-
-        }catch (Exception e){
-
-            System.out.println("Could not save data");
-        }
-
-    }
-
-   /* private void handleSaveAs() {
         Window stage = entryTableView.getScene().getWindow();
 
         FileChooser fileChooser = new FileChooser();
@@ -152,14 +138,13 @@ public class Controller implements Initializable{
 
     public void savePersonDataToFile(File file) {
         try {
-            JAXBContext context = JAXBContext
-                    .newInstance(PersonListWrapper.class);
+            JAXBContext context = JAXBContext.newInstance(MyWrapperForList.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             // Wrapping our person data.
-            PersonListWrapper wrapper = new PersonListWrapper();
-            wrapper.setPersons(diaryEntryList);
+            MyWrapperForList wrapper = new MyWrapperForList();
+            wrapper.setDiaryEntries(diaryEntryList);
 
             // Marshalling and saving XML to the file.
             m.marshal(wrapper, file);
@@ -173,8 +158,6 @@ public class Controller implements Initializable{
             alert.showAndWait();
         }
     }
-
-    */
 
 
 }

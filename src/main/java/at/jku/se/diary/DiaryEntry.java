@@ -10,112 +10,82 @@ import java.time.LocalDate;
 
 public class DiaryEntry {
 
-        private StringProperty title;
-        private StringProperty location;
-        private ObjectProperty<LocalDate> date;
-        private StringProperty text;
-        private StringProperty category;
-        private StringProperty description;
-        private StringProperty star;
+        private String title;
+        private String location;
+        private LocalDate date;
+        private String text;
+        private String category;
+        private String description;
+        private String star;
+
 
     public DiaryEntry(){}
 
         public DiaryEntry(String title, String location, LocalDate date, String text, String category,String description, String star) {
-            this.title = new SimpleStringProperty(title);
-            this.location = new SimpleStringProperty(location);
-            this.date = new SimpleObjectProperty<LocalDate>(date);
-            this.text = new SimpleStringProperty(text);
-            this.category = new SimpleStringProperty(category);
-            this.description = new SimpleStringProperty(description);
-            this.star = new SimpleStringProperty(star);
+
+            this.title= title;
+            this.location = location;
+            this.date = date;
+            this.text = text;
+            this.category = category;
+            this.description = description;
+            this.star = star;
         }
 
-    public DiaryEntry(String location) {
-       this.location = new SimpleStringProperty(location);
-    }
-
     public String getTitle() {
-        return title.get();
-    }
-
-    public StringProperty titleProperty() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title.set(title);
+        this.title = title;
     }
 
     public String getLocation() {
-        return location.get();
-    }
-
-    public StringProperty locationProperty() {
         return location;
     }
 
     public void setLocation(String location) {
-        this.location.set(location);
+        this.location = location;
     }
 
     public LocalDate getDate() {
-        return date.get();
-    }
-
-    public ObjectProperty<LocalDate> dateProperty() {
         return date;
     }
 
     public void setDate(LocalDate date) {
-        this.date.set(date);
+        this.date = date;
     }
 
     public String getText() {
-        return text.get();
-    }
-
-    public StringProperty textProperty() {
         return text;
     }
 
     public void setText(String text) {
-        this.text.set(text);
+        this.text = text;
     }
 
     public String getCategory() {
-        return category.get();
-    }
-
-    public StringProperty categoryProperty() {
         return category;
     }
 
     public void setCategory(String category) {
-        this.category.set(category);
+        this.category = category;
     }
 
     public String getDescription() {
-        return description.get();
-    }
-
-    public StringProperty DescriptionProperty() {
         return description;
     }
 
     public void setDescription(String description) {
-        this.description.set(description);
+        this.description = description;
     }
 
     public String getStar() {
-        return star.get();
-    }
-
-    public StringProperty starProperty() {
         return star;
     }
 
     public void setStar(String star) {
-        this.star.set(star);
+        this.star = star;
     }
 }
 

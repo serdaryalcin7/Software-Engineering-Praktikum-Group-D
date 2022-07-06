@@ -12,8 +12,6 @@ import javax.xml.bind.Marshaller;
 import java.util.prefs.Preferences;
 
 
-
-
 public class HelloApplication extends Application {
 
     @Override

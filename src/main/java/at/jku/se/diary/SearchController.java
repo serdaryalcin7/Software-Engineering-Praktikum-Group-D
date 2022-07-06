@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -55,13 +56,13 @@ public class SearchController extends Controller implements Initializable {
         starsearch.getItems().addAll("1","2","3","4","5");
         categorysearch.getItems().addAll("Hotel","Restaurant");
 
-        titleCol.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
-        locationCol.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
-        dateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty().asString());
-        textCol.setCellValueFactory(cellData -> cellData.getValue().textProperty());
-        categoryCol.setCellValueFactory(cellData -> cellData.getValue().categoryProperty());
-        descrCol.setCellValueFactory(cellData -> cellData.getValue().textProperty());
-        starCol.setCellValueFactory(cellData -> cellData.getValue().starProperty());
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        textCol.setCellValueFactory(new PropertyValueFactory<>("text"));
+        categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        descrCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        starCol.setCellValueFactory(new PropertyValueFactory<>("star"));
         searchTableView.setItems(Controller.diaryEntryList);
 
 
@@ -74,10 +75,10 @@ public class SearchController extends Controller implements Initializable {
             filterList.setPredicate(entries -> entries.getLocation().contains(locationsearch.getText()));
         });
         startsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-            filterList.setPredicate(entries -> entries.getDate().equals(startsearch.getValue()));
+            filterList.setPredicate(entries -> entries.getDate().equals(startsearch.getValue()) || entries.getDate().isAfter(startsearch.getValue()));
         });
         utilsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-            filterList.setPredicate(entries -> entries.getDate().equals(utilsearch.getValue()));
+            filterList.setPredicate(entries -> entries.getDate().equals(utilsearch.getValue()) || entries.getDate().isBefore(utilsearch.getValue()));
         });
         textsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
             filterList.setPredicate(entries -> entries.getText().contains(textsearch.getText()));

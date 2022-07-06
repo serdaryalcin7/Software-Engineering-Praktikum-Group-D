@@ -12,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -69,7 +70,7 @@ public class ShowMapController {
     Group zoomGroup;
 
 private void initCol(){
-    locationId.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
+    locationId.setCellValueFactory(new PropertyValueFactory<>("location"));
 }
 
     private void loadData() {
@@ -81,7 +82,7 @@ private void initCol(){
            void initialize() {
                 initCol();
                 loadData();
-               Image image = new Image("C:\\Users\\Serda\\Desktop\\DiaryBabaFX\\src\\main\\java\\at\\jku\\se\\diary\\map.png");
+               Image image = new Image("C:\\Users\\Rifat\\Desktop\\UNI\\GBITTE\\src\\main\\java\\at\\jku\\se\\diary\\map.png");
 
                map.setImage(image);
                map.setCache(true);
