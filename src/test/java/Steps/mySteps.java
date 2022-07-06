@@ -23,7 +23,7 @@ public class mySteps {
 
     @When("fuer Titel")
     public void fuer_titel() {
-        d.setTitle("Titel");
+        d.setTitle("Titl");
         if (d.getTitle() != null){
             System.out.println("Gültiger Input fuer Titel wurde eingegeben");
         }
