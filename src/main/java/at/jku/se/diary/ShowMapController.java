@@ -44,4 +44,20 @@ public class ShowMapController extends Controller implements Initializable {
         window.setScene(new Scene(root, 1000, 700));
     }
 
+    public WebView getWv() {
+        return wv;
+    }
+
+    public void setWv(WebView wv) {
+        this.wv = wv;
+    }
+
+    public WebEngine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(WebEngine engine) {
+        this.engine = engine;
+    }
+
 }

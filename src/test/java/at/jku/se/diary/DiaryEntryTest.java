@@ -7,6 +7,7 @@ package at.jku.se.diary;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import at.jku.se.diary.DiaryEntry;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,9 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class DiaryEntryTest {
 
-    private DiaryEntry t1, t2;
-
-    EntryController eC1;
+    private DiaryEntry t1;
+    private DiaryEntry t2;
 
     @BeforeEach
     void setUp(){
