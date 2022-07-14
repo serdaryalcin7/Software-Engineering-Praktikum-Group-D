@@ -144,6 +144,12 @@ public class MainController implements Initializable {
 
                 titlesearch.clear();
                 locationsearch.clear();
+                startsearch.setValue(null);
+                utilsearch.setValue(null);
+                textsearch.clear();
+                categorysearch.setValue(null);
+                descrsearch.clear();
+                starsearch.setValue(null);
 
         }
 
