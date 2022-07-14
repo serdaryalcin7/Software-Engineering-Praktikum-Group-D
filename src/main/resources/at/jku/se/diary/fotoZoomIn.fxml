@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.FotoZoomInController">
+   <children>
+      <ImageView fx:id="fotoZoomIn" fitHeight="476.0" fitWidth="638.0" layoutX="5.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>
