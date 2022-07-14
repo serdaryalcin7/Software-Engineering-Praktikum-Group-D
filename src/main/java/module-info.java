@@ -1,11 +1,12 @@
-module sample.diaryfx {
-    requires javafx.controls;
+module at.jku.se.diary {
+
+
     requires javafx.fxml;
-    requires java.xml.bind;
-    requires java.prefs;
-    requires javafx.web;
+    requires javafx.graphics;
+    requires javafx.controls;
+    requires java.desktop;
 
 
-    opens at.jku.se.diary to javafx.fxml;
-    exports at.jku.se.diary;
+    opens at.jku.se.diary;
+
 }

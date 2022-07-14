@@ -7,9 +7,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import java.util.prefs.Preferences;
 
 
 public class HelloApplication extends Application {
