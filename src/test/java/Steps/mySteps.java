@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import java.time.LocalDate;
 
 public class mySteps {
-
+/*
     DiaryEntry d = new DiaryEntry();
 
     @Given("User klickt new Entry")
@@ -80,4 +80,6 @@ public class mySteps {
     public void entry_created_succesfully_and_saved_in_overview() {
 
     }
+
+ */
 }

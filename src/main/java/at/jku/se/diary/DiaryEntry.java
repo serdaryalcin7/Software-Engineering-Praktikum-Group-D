@@ -21,22 +21,14 @@ public class DiaryEntry {
 
     public DiaryEntry() {  }
 
-    public DiaryEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries) {
-
-        this.title = title;
-        this.location = location;
-        this.date = date;
-        this.text = text;
-        this.categoryEntries = categoryEntries;
-
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if (title != null) {
+            this.title = title;
+        }
     }
 
     public String getLocation() {
@@ -44,7 +36,9 @@ public class DiaryEntry {
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        if (location != null) {
+            this.location = location;
+        }
     }
 
     public LocalDate getDate() {
@@ -52,7 +46,9 @@ public class DiaryEntry {
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
+        if (date != null) {
+            this.date = date;
+        }
     }
 
     public String getText() {
@@ -60,7 +56,9 @@ public class DiaryEntry {
     }
 
     public void setText(String text) {
-        this.text = text;
+        if (text != null) {
+            this.text = text;
+        }
     }
 
     public ArrayList<CategoryEntry> getCategoryEntries() {
@@ -68,7 +66,9 @@ public class DiaryEntry {
     }
 
     public void setCategoryEntries(ArrayList<CategoryEntry> categoryEntries) {
-        this.categoryEntries = categoryEntries;
+        if (categoryEntries != null) {
+            this.categoryEntries = categoryEntries;
+        }
     }
 
     public String getFotopath1() {
@@ -95,18 +95,23 @@ public class DiaryEntry {
         this.fotopath3 = fotopath3;
     }
 
-    public DiaryEntry createNewEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries, String fotopath1, String fotopath2, String fotopath3){
+    public DiaryEntry createNewEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries, String fotopath1, String fotopath2, String fotopath3)
+    throws EntryNullException {
+        if(title == null || location == null || date == null || text == null || categoryEntries == null) {
+           throw new EntryNullException("Please fill out every field!");
+        }
+
 
         DiaryEntry diaryEntry = new DiaryEntry();
 
-        diaryEntry.setTitle(title);
-        diaryEntry.setLocation(location);
-        diaryEntry.setDate(date);
-        diaryEntry.setText(text);
-        diaryEntry.setCategoryEntries(categoryEntries);
-        diaryEntry.setFotopath1(fotopath1);
-        diaryEntry.setFotopath2(fotopath2);
-        diaryEntry.setFotopath3(fotopath3);
+            diaryEntry.setTitle(title);
+            diaryEntry.setLocation(location);
+            diaryEntry.setDate(date);
+            diaryEntry.setText(text);
+            diaryEntry.setCategoryEntries(categoryEntries);
+            diaryEntry.setFotopath1(fotopath1);
+            diaryEntry.setFotopath2(fotopath2);
+            diaryEntry.setFotopath3(fotopath3);
 
         return diaryEntry;
 

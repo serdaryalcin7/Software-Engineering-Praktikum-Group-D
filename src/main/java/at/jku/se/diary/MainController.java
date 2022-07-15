@@ -76,80 +76,44 @@ public class MainController implements Initializable {
 
                 starsearch.getItems().addAll("1", "2", "3", "4", "5");
                 categorysearch.getItems().addAll("Hotel", "Restaurant","Shopping");
-/*
+
                 FilteredList<DiaryEntry> filterList = new FilteredList<>(diaryEntryList);
-
-                titlesearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getTitle().toLowerCase().contains(titlesearch.getText().toLowerCase()));
-                });
-                locationsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getLocation().toLowerCase().contains(locationsearch.getText().toLowerCase()));
-                });
-                startsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getDate().equals(startsearch.getValue()) || entries.getDate().isAfter(startsearch.getValue()));
-                });
-                utilsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getDate().equals(utilsearch.getValue()) || entries.getDate().isBefore(utilsearch.getValue()));
-                });
-                textsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getText().toLowerCase().contains(textsearch.getText().toLowerCase()));
-                });
-                categorysearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.categoryFilter(entries.getCategoryEntries(), categorysearch.getValue()));
-                });
-                descrsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.descriptionFilter(entries.getCategoryEntries(), descrsearch.getText()));
-                });
-                starsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.starFilter(entries.getCategoryEntries(), starsearch.getValue()));
-                });
-
                 entryTableView.setItems(filterList);
 
+                titlesearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.getTitle().toLowerCase().contains(titlesearch.getText().toLowerCase()) || (titlesearch.getText().isEmpty()));
+                });
+                locationsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.getLocation().toLowerCase().contains(locationsearch.getText().toLowerCase())|| (locationsearch.getText().isEmpty()));
+                });
+                startsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.getDate().equals(startsearch.getValue()) || entries.getDate().isAfter(startsearch.getValue())|| (startsearch.getValue().equals(null)));
+                });
+                utilsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.getDate().equals(utilsearch.getValue()) || entries.getDate().isBefore(utilsearch.getValue())|| (utilsearch.getValue().equals(null)));
+                });
+                textsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.getText().toLowerCase().contains(textsearch.getText().toLowerCase())|| (textsearch.getText().isEmpty()));
+                });
+                categorysearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.categoryFilter(entries.getCategoryEntries(), categorysearch.getValue())|| (categorysearch.getValue().isEmpty()));
+                });
+                descrsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.descriptionFilter(entries.getCategoryEntries(), descrsearch.getText())|| (descrsearch.getText().isEmpty()));
+                });
+                starsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
+                        filterList.setPredicate(entries -> entries.starFilter(entries.getCategoryEntries(), starsearch.getValue())|| (starsearch.getValue().isEmpty()));
+                });
 
- */
         }
 
         @FXML
         void searchButtonClicked(ActionEvent event) throws IOException {
 
-                FilteredList<DiaryEntry> filterList = new FilteredList<>(diaryEntryList);
-
-                filterList.predicateProperty().bind(Bindings.createObjectBinding(() -> diaryEntry ->
-                                ((diaryEntry.getTitle().toLowerCase().contains(titlesearch.getText().toLowerCase())) || (titlesearch.getText().isEmpty()))
-                                        && ((diaryEntry.getLocation().toLowerCase().contains(locationsearch.getText().toLowerCase())) || (locationsearch.getText().isEmpty()))
-                                        && (diaryEntry.getDate().isAfter(startsearch.getValue()) || (diaryEntry.getDate().isEqual(startsearch.getValue())) || (startsearch.getValue().equals(null)))
-                                        && (diaryEntry.getDate().isBefore(utilsearch.getValue()) || diaryEntry.getDate().isEqual(utilsearch.getValue()) || (utilsearch.getValue().equals(null)))
-                                        && ((diaryEntry.getText().toLowerCase().contains(textsearch.getText().toLowerCase())) || (textsearch.getText().isEmpty()))
-                                        && (diaryEntry.categoryFilter(diaryEntry.getCategoryEntries(), categorysearch.getValue()) || (categorysearch.getValue().isEmpty())
-                                        && ((diaryEntry.descriptionFilter(diaryEntry.getCategoryEntries(), descrsearch.getText())) || (descrsearch.getText().isEmpty()))
-                                        && (diaryEntry.starFilter(diaryEntry.getCategoryEntries(), starsearch.getValue()) || (starsearch.getValue().isEmpty()))),
-
-                        titlesearch.textProperty(),
-                        locationsearch.textProperty(),
-                        startsearch.converterProperty(),
-                        utilsearch.converterProperty(),
-                        textsearch.textProperty(),
-                        categorysearch.converterProperty(),
-                        descrsearch.textProperty(),
-                        starsearch.converterProperty()
-                ));
-
-                entryTableView.setItems(filterList);
-
         }
 
         @FXML
         void clearButtonClicked(ActionEvent event) throws IOException {
-
-                titlesearch.clear();
-                locationsearch.clear();
-                startsearch.setValue(null);
-                utilsearch.setValue(null);
-                textsearch.clear();
-                categorysearch.setValue(null);
-                descrsearch.clear();
-                starsearch.setValue(null);
 
         }
 
@@ -180,7 +144,7 @@ public class MainController implements Initializable {
         void deleteButtonClicked(ActionEvent event) throws IOException {
 
                 int selectedID = entryTableView.getSelectionModel().getSelectedIndex();
-                entryTableView.getItems().remove(selectedID);
+                entryTableView.getColumns().remove(selectedID);
 
         }
 

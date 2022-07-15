@@ -33,6 +33,8 @@ public class CreateNewEntryController implements Initializable {
     @FXML
     private TextField locationFld;
     @FXML
+    private Button mapButton;
+    @FXML
     private TextArea textFld;
     @FXML
     private RadioButton bold;
@@ -101,11 +103,12 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void addInputTOCombo(ActionEvent event){
+    public void addInputTOCombo(ActionEvent event) {
 
-        categoryComb.getItems().add(addCategory.getText());
-        addCategory.clear();
+            categoryComb.getItems().add(addCategory.getText());
+            addCategory.clear();
     }
+
     @FXML
     public void removeComboBox(ActionEvent event){
 
@@ -113,23 +116,23 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void addCategoryButtonClicked(){
+    public void addCategoryButtonClicked() throws EntryNullException {
 
-        CategoryEntry categoryEntry = new CategoryEntry(categoryComb.getValue(),descFld.getText(),starComb.getValue());
-        ObservableList<CategoryEntry> categoryEntries = categoryTableView.getItems();
-        categoryEntries.add(categoryEntry);
-        categoryTableView.setItems(categoryEntries);
+            CategoryEntry categoryEntry = new CategoryEntry(categoryComb.getValue(), descFld.getText(), starComb.getValue());
+            ObservableList<CategoryEntry> categoryEntries = categoryTableView.getItems();
+            categoryEntries.add(categoryEntry);
+            categoryTableView.setItems(categoryEntries);
 
-        cateCol.setCellValueFactory(new PropertyValueFactory<>("category"));
-        desCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        ratCol.setCellValueFactory(new PropertyValueFactory<>("star"));
+            cateCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+            desCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+            ratCol.setCellValueFactory(new PropertyValueFactory<>("star"));
 
-        categoryEntryArrayList.add(categoryEntry);
+            categoryEntryArrayList.add(categoryEntry);
 
-        categoryComb.setValue(null);
-        descFld.clear();
-        starComb.setValue(null);
-    }
+            categoryComb.setValue(null);
+            descFld.clear();
+            starComb.setValue(null);
+        }
     @FXML
     public void deleteCategoryButtonClicked(ActionEvent event){
 
@@ -253,34 +256,37 @@ public class CreateNewEntryController implements Initializable {
 
     @FXML
     public void saveButtonClicked() throws IOException {
+        try {
+            String foto1, foto2, foto3;
 
-        String foto1,foto2,foto3;
+            if (img1.getImage() != null) {
+                foto1 = img1.getImage().getUrl();
+            } else {
+                foto1 = "src/main/java/at/jku/se/diary/addfoto.png";
+            }
 
-        if(img1.getImage()!=null) {
-            foto1 = img1.getImage().getUrl();
-        }else{
-            foto1="src/main/java/at/jku/se/diary/addfoto.png";
+            if (img2.getImage() != null) {
+                foto2 = img2.getImage().getUrl();
+            } else {
+                foto2 = "src/main/java/at/jku/se/diary/addfoto.png";
+            }
+
+            if (img3.getImage() != null) {
+                foto3 = img3.getImage().getUrl();
+            } else {
+                foto3 = "src/main/java/at/jku/se/diary/addfoto.png";
+            }
+
+            MainController.diaryEntryList.add(newEntry.createNewEntry(titleFld.getText(), locationFld.getText(), dateFld.getValue(),
+                    textFld.getText(), categoryEntryArrayList,
+                    foto1, foto2, foto3));
+
+            Parent root = FXMLLoader.load(getClass().getResource("mainview.fxml"));
+            Stage window = (Stage) saveButton.getScene().getWindow();
+            window.setScene(new Scene(root, 1000, 700));
+        } catch (EntryNullException e) {
+            ErrorMessage.display("Error", e.getMessage());
         }
-
-        if(img2.getImage()!=null) {
-            foto2 = img2.getImage().getUrl();
-        }else{
-            foto2="src/main/java/at/jku/se/diary/addfoto.png";
-        }
-
-        if(img3.getImage()!=null) {
-            foto3 = img3.getImage().getUrl();
-        }else{
-            foto3="src/main/java/at/jku/se/diary/addfoto.png";
-        }
-
-        MainController.diaryEntryList.add(newEntry.createNewEntry(titleFld.getText(), locationFld.getText(), dateFld.getValue(),
-                textFld.getText(), categoryEntryArrayList,
-                foto1,foto2,foto3));
-
-        Parent root = FXMLLoader.load(getClass().getResource("mainview.fxml"));
-        Stage window = (Stage) saveButton.getScene().getWindow();
-        window.setScene(new Scene(root, 1000, 700));
     }
 
     public void showDiaryEntry(DiaryEntry selectedForUpdate) {
@@ -334,6 +340,25 @@ public class CreateNewEntryController implements Initializable {
         Stage window = (Stage) editButton.getScene().getWindow();
         window.setScene(new Scene(root, 1000, 700));
     }
+
+    @FXML
+    public void mapButtonClicked() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("showMap.fxml"));
+        Parent root = loader.load();
+
+        String map = locationFld.getText();
+
+        ShowMapController showMapController = loader.getController();
+        showMapController.setLocation(map);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root,650,500));
+        stage.show();
+
+    }
+
+
 }
 
 
