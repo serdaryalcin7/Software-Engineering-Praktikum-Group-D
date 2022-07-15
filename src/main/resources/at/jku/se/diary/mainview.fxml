@@ -61,7 +61,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="mapButton" alignment="CENTER" mnemonicParsing="false" text="Show Map">
+            <Button fx:id="mapButton" alignment="CENTER" mnemonicParsing="false" onAction="#mapButtonClicked" text="Show Map">
                <font>
                   <Font name="Chalkboard SE Bold" size="18.0" />
                </font>

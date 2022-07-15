@@ -6,10 +6,7 @@ public class CategoryEntry {
     private String description;
     private String star;
 
-    public CategoryEntry(String category, String description, String star) throws EntryNullException {
-            if (category == null || description == null || star == null) {
-                throw new EntryNullException("Please fill out every field!");
-            }
+    public CategoryEntry(String category, String description, String star) {
 
             this.category = category;
             this.description = description;

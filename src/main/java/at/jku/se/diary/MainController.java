@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.AbstractList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -127,6 +128,11 @@ public class MainController implements Initializable {
         }
 
         @FXML
+        void mapButtonClicked(ActionEvent event) throws IOException{
+
+        }
+
+        @FXML
         void showButtonClicked(ActionEvent event) throws IOException {
 
                 selectedForUpdate = entryTableView.getSelectionModel().getSelectedItem();
@@ -141,10 +147,10 @@ public class MainController implements Initializable {
         }
 
         @FXML
-        void deleteButtonClicked(ActionEvent event) throws IOException {
+        void deleteButtonClicked(ActionEvent event) {
 
                 int selectedID = entryTableView.getSelectionModel().getSelectedIndex();
-                entryTableView.getColumns().remove(selectedID);
+                entryTableView.getItems().remove(selectedID);
 
         }
 

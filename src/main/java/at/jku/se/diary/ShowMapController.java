@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ShowMapController implements Initializable {
@@ -35,15 +37,16 @@ public class ShowMapController implements Initializable {
     private String getMapString() {
 
         String map = "https://www.google.at/maps/dir/";
-        map = map + getLocation() +"/+/";
+        map += getLocation() + "/+/";
         return map;
     }
+
 
     public static String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public static void setLocation(String location) {
         ShowMapController.location = location;
     }
 

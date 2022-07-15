@@ -73,6 +73,9 @@ public class CreateNewEntryController implements Initializable {
     @FXML
     private Button backButton;
 
+    @FXML
+    private ShowMapController sm;
+
     FileChooser chooser = new FileChooser();
     DiaryEntry newEntry = new DiaryEntry();
     private ArrayList<CategoryEntry> categoryEntryArrayList = new ArrayList<>();
@@ -347,10 +350,11 @@ public class CreateNewEntryController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("showMap.fxml"));
         Parent root = loader.load();
 
-        String map = locationFld.getText();
+        String map = MainController.selectedForUpdate.getLocation();
 
         ShowMapController showMapController = loader.getController();
         showMapController.setLocation(map);
+
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root,650,500));

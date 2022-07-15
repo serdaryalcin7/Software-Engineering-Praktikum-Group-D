@@ -97,7 +97,7 @@ public class DiaryEntry {
 
     public DiaryEntry createNewEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries, String fotopath1, String fotopath2, String fotopath3)
     throws EntryNullException {
-        if(title == null || location == null || date == null || text == null || categoryEntries == null) {
+        if(title == "" || location == "" || date == null || text == "") {
            throw new EntryNullException("Please fill out every field!");
         }
 
