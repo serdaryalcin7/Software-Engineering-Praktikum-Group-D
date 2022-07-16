@@ -5,4 +5,3 @@ public class EntryNullException extends Throwable {
         super(message);
     }
 }
-
