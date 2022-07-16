@@ -61,7 +61,6 @@ public class MainController implements Initializable {
         private Button searchButton;
         @FXML
         private Button clearButton;
-
         static ObservableList<DiaryEntry> diaryEntryList = FXCollections.observableArrayList();
         static DiaryEntry selectedForUpdate;
 
