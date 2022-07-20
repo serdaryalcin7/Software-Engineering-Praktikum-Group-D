@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -22,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.CreateNewEntryController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.CreateNewEntryController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0">
          <children>
@@ -45,8 +40,11 @@
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </Text>
-                  <TextField fx:id="titleFld" prefHeight="30.0" prefWidth="350.0" style="-fx-background-color: dddddd;" />
+                  <TextField fx:id="titleFld" prefHeight="30.0" prefWidth="345.0" style="-fx-background-color: dddddd;" />
                   <Label text="*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -66,17 +64,15 @@
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </Text>
-                  <TextField fx:id="locationFld" prefHeight="27.0" prefWidth="232.0" style="-fx-background-color: dddddd;" />
+                  <TextField fx:id="locationFld" prefHeight="30.0" prefWidth="345.0" style="-fx-background-color: dddddd;" />
                   <Label text="*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="mapButton" mnemonicParsing="false" onAction="#mapButtonClicked" prefHeight="27.0" prefWidth="87.0" text="show map">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -92,8 +88,11 @@
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </Text>
-                  <TextArea fx:id="textFld" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: dddddd;" />
+                  <TextArea fx:id="textFld" prefHeight="50.0" prefWidth="345.0" style="-fx-background-color: dddddd;" />
                   <Label text="*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -129,6 +128,9 @@
                      </HBox.margin>
                   </DatePicker>
                   <Label text="*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -225,11 +227,11 @@
                      </children>
                   </VBox>
                   <TableView fx:id="categoryTableView" prefHeight="115.0" prefWidth="344.0">
-                    <columns>
-                      <TableColumn fx:id="cateCol" prefWidth="100.0" text="Category" />
-                      <TableColumn fx:id="desCol" prefWidth="120.0" text="Description" />
+                     <columns>
+                        <TableColumn fx:id="cateCol" prefWidth="100.0" text="Category" />
+                        <TableColumn fx:id="desCol" prefWidth="120.0" text="Description" />
                         <TableColumn fx:id="ratCol" prefWidth="100.0" text="Rating" />
-                    </columns>
+                     </columns>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -366,12 +368,17 @@
                   </Button>
                   <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClicked" text="Edit">
                      <HBox.margin>
-                        <Insets left="100.0" top="15.0" />
+                        <Insets left="50.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="mapButton" mnemonicParsing="false" onAction="#mapButtonClicked" text="Show Map">
+                     <HBox.margin>
+                        <Insets left="50.0" top="15.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" text="Back">
                      <HBox.margin>
-                        <Insets left="100.0" top="15.0" />
+                        <Insets left="50.0" top="15.0" />
                      </HBox.margin>
                   </Button>
                </children>
