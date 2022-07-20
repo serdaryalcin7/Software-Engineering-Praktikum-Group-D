@@ -2,7 +2,6 @@ package at.jku.se.diary;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,13 +16,22 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateNewEntryController implements Initializable {
@@ -32,8 +40,6 @@ public class CreateNewEntryController implements Initializable {
     private TextField titleFld;
     @FXML
     private TextField locationFld;
-    @FXML
-    private Button mapButton;
     @FXML
     private TextArea textFld;
     @FXML
@@ -71,10 +77,11 @@ public class CreateNewEntryController implements Initializable {
     @FXML
     private Button editButton;
     @FXML
+    private Button mapButton;
+    @FXML
     private Button backButton;
 
-    @FXML
-    private ShowMapController sm;
+    static List<String> locationsList = new ArrayList<>();
 
     FileChooser chooser = new FileChooser();
     DiaryEntry newEntry = new DiaryEntry();
@@ -88,7 +95,7 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void radioClicked(ActionEvent event){
+    public void radioClicked(){
 
         String text = textFld.getText();
 
@@ -106,38 +113,37 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void addInputTOCombo(ActionEvent event) {
+    public void addInputTOCombo(){
 
-            categoryComb.getItems().add(addCategory.getText());
-            addCategory.clear();
+        categoryComb.getItems().add(addCategory.getText());
+        addCategory.clear();
     }
-
     @FXML
-    public void removeComboBox(ActionEvent event){
+    public void removeComboBox(){
 
         categoryComb.getItems().remove(categoryComb.getValue());
     }
 
     @FXML
-    public void addCategoryButtonClicked() throws EntryNullException {
+    public void addCategoryButtonClicked(){
 
-            CategoryEntry categoryEntry = new CategoryEntry(categoryComb.getValue(), descFld.getText(), starComb.getValue());
-            ObservableList<CategoryEntry> categoryEntries = categoryTableView.getItems();
-            categoryEntries.add(categoryEntry);
-            categoryTableView.setItems(categoryEntries);
+        CategoryEntry categoryEntry = new CategoryEntry(categoryComb.getValue(),descFld.getText(),starComb.getValue());
+        ObservableList<CategoryEntry> categoryEntries = categoryTableView.getItems();
+        categoryEntries.add(categoryEntry);
+        categoryTableView.setItems(categoryEntries);
 
-            cateCol.setCellValueFactory(new PropertyValueFactory<>("category"));
-            desCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-            ratCol.setCellValueFactory(new PropertyValueFactory<>("star"));
+        cateCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        desCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        ratCol.setCellValueFactory(new PropertyValueFactory<>("star"));
 
-            categoryEntryArrayList.add(categoryEntry);
+        categoryEntryArrayList.add(categoryEntry);
 
-            categoryComb.setValue(null);
-            descFld.clear();
-            starComb.setValue(null);
-        }
+        categoryComb.setValue(null);
+        descFld.clear();
+        starComb.setValue(null);
+    }
     @FXML
-    public void deleteCategoryButtonClicked(ActionEvent event){
+    public void deleteCategoryButtonClicked(){
 
         int selectedID = categoryTableView.getSelectionModel().getSelectedIndex();
         categoryTableView.getItems().remove(selectedID);
@@ -159,7 +165,7 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void addFoto2(ActionEvent event){
+    public void addFoto2(){
 
         chooser.setInitialDirectory(new File(System.getProperty("user.home")));
         chooser.getExtensionFilters().clear();
@@ -174,7 +180,7 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void addFoto3(ActionEvent event){
+    public void addFoto3(){
 
         chooser.setInitialDirectory(new File(System.getProperty("user.home")));
         chooser.getExtensionFilters().clear();
@@ -189,20 +195,20 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void deleteFoto1(ActionEvent event){
+    public void deleteFoto1(){
         img1.setImage(null);
     }
     @FXML
-    public void deleteFoto2(ActionEvent event){
+    public void deleteFoto2(){
         img2.setImage(null);
     }
     @FXML
-    public void deleteFoto3(ActionEvent event){
+    public void deleteFoto3(){
         img3.setImage(null);
     }
 
     @FXML
-    public void zoomInButton1Clicked(ActionEvent event) throws IOException {
+    public void zoomInButton1Clicked() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fotoZoomIn.fxml"));
         Parent root = loader.load();
@@ -218,7 +224,7 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void zoomInButton2Clicked(ActionEvent event) throws IOException {
+    public void zoomInButton2Clicked() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fotoZoomIn.fxml"));
         Parent root = loader.load();
@@ -234,7 +240,7 @@ public class CreateNewEntryController implements Initializable {
     }
 
     @FXML
-    public void zoomInButton3Clicked(ActionEvent event) throws IOException {
+    public void zoomInButton3Clicked() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fotoZoomIn.fxml"));
         Parent root = loader.load();
@@ -347,14 +353,11 @@ public class CreateNewEntryController implements Initializable {
     @FXML
     public void mapButtonClicked() throws IOException {
 
+        String map = locationFld.getText();
+        ShowMapController.locations.add(map);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("showMap.fxml"));
         Parent root = loader.load();
-
-        String map = MainController.selectedForUpdate.getLocation();
-
-        ShowMapController showMapController = loader.getController();
-        showMapController.setLocation(map);
-
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root,650,500));
@@ -363,6 +366,84 @@ public class CreateNewEntryController implements Initializable {
     }
 
 
+    public static void createXml() throws ParserConfigurationException, TransformerException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.newDocument();
+        document.setXmlStandalone(true);
+
+        Element diaryEntry = document.createElement("diaryEntry");
+
+        Element title = document.createElement("titile");
+        title.setTextContent(MainController.selectedForUpdate.getTitle());
+        diaryEntry.appendChild(title);
+
+        Element location = document.createElement("location");
+        location.setTextContent(MainController.selectedForUpdate.getLocation());
+        diaryEntry.appendChild(location);
+
+        Element date = document.createElement("date");
+        date.setTextContent(MainController.selectedForUpdate.getDate().toString());
+        diaryEntry.appendChild(date);
+
+        Element text = document.createElement("text");
+        text.setTextContent(MainController.selectedForUpdate.getText());
+        diaryEntry.appendChild(text);
+
+        if(MainController.selectedForUpdate.getCategoryEntries()!=null){
+            for(int i=0; i<MainController.selectedForUpdate.getCategoryEntries().size();i++){
+                Element categoryentry = document.createElement("categoryentry");
+                Element category = document.createElement("category");
+                category.setTextContent(MainController.selectedForUpdate.getCategoryEntries().get(i).getCategory());
+                categoryentry.appendChild(category);
+
+                Element descr = document.createElement("descr");
+                descr.setTextContent(MainController.selectedForUpdate.getCategoryEntries().get(i).getDescription());
+                categoryentry.appendChild(descr);
+
+                Element star = document.createElement("star");
+                star.setTextContent(MainController.selectedForUpdate.getCategoryEntries().get(i).getStar());
+                categoryentry.appendChild(star);
+
+                diaryEntry.appendChild(categoryentry);
+            }
+        }
+        Element imagepath = document.createElement("imagepath");
+        imagepath.setTextContent("imagePath.txt");
+        diaryEntry.appendChild(imagepath);
+
+        document.appendChild(diaryEntry);
+
+        TransformerFactory tff = TransformerFactory.newInstance();
+        Transformer tf = tff.newTransformer();
+        tf.setOutputProperty(OutputKeys.INDENT, "yes");
+
+        FileChooser fileChooser = new FileChooser();
+        Stage primaryStage = new Stage();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(primaryStage);
+        tf.transform(new DOMSource(document), new StreamResult(file));
+    }
+
+    public static void createImagePath() throws IOException {
+
+        File imagepath = new File("imagePath.txt");
+        FileWriter writer = new FileWriter(imagepath);
+        BufferedWriter output = new BufferedWriter(writer);
+
+        String path = MainController.selectedForUpdate.getFotopath1()+"\n"
+                +MainController.selectedForUpdate.getFotopath2()+"\n"
+                +MainController.selectedForUpdate.getFotopath3();
+        output.write(path);
+        output.flush();
+        output.close();
+
+    }
+
+
 }
+
 
 
