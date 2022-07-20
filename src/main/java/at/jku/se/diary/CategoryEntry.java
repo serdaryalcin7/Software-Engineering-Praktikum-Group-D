@@ -6,6 +6,8 @@ public class CategoryEntry {
     private String description;
     private String star;
 
+    public CategoryEntry(){}
+
     public CategoryEntry(String category, String description, String star) {
 
             this.category = category;

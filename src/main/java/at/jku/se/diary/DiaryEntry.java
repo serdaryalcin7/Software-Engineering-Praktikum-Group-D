@@ -19,7 +19,7 @@ public class DiaryEntry {
     private String fotopath2;
     private String fotopath3;
 
-    public DiaryEntry() {  }
+    public DiaryEntry() {}
 
     public String getTitle() {
         return title;
@@ -95,12 +95,11 @@ public class DiaryEntry {
         this.fotopath3 = fotopath3;
     }
 
-    public DiaryEntry createNewEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries, String fotopath1, String fotopath2, String fotopath3)
-    throws EntryNullException {
+    public DiaryEntry createNewEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries, String fotopath1, String fotopath2, String fotopath3) throws EntryNullException {
+
         if(title == "" || location == "" || date == null || text == "") {
            throw new EntryNullException("Please fill out every field!");
         }
-
 
         DiaryEntry diaryEntry = new DiaryEntry();
 
@@ -143,10 +142,4 @@ public class DiaryEntry {
         }
         return false;
     }
-
-
-
-
-
-
 }

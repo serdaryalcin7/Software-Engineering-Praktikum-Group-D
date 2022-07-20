@@ -294,7 +294,11 @@ public class CreateNewEntryController implements Initializable {
             Stage window = (Stage) saveButton.getScene().getWindow();
             window.setScene(new Scene(root, 1000, 700));
         } catch (EntryNullException e) {
-            ErrorMessage.display("Error", e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+
         }
     }
 
