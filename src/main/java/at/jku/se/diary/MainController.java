@@ -4,7 +4,6 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,12 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.AbstractList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -38,9 +37,9 @@ public class MainController implements Initializable {
         @FXML
         private Button deleteButton;
         @FXML
-        private Button mapButton;
+        private Button showMapButton;
         @FXML
-        private Button saveButton;
+        private Button saveAsButton;
         @FXML
         private TextField titlesearch;
         @FXML
@@ -57,15 +56,15 @@ public class MainController implements Initializable {
         private TextField descrsearch;
         @FXML
         private ComboBox<String> starsearch;
-        @FXML
-        private Button searchButton;
-        @FXML
-        private Button clearButton;
-        static ObservableList<DiaryEntry> diaryEntryList = FXCollections.observableArrayList();
-        static DiaryEntry selectedForUpdate;
+
+        public static ObservableList<DiaryEntry> diaryEntryList = FXCollections.observableArrayList();
+        public static DiaryEntry selectedForUpdate;
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+                entryTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
                 titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
                 locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -77,48 +76,62 @@ public class MainController implements Initializable {
                 starsearch.getItems().addAll("1", "2", "3", "4", "5");
                 categorysearch.getItems().addAll("Hotel", "Restaurant","Shopping");
 
+                titlesearch.setText("");
+                locationsearch.setText("");
+                startsearch.setValue(LocalDate.of(2022, 01, 01));
+                utilsearch.setValue(LocalDate.of(2023,01,01));
+                textsearch.setText("");
+                categorysearch.setValue("");
+                descrsearch.setText("");
+                starsearch.setValue("");
+
                 FilteredList<DiaryEntry> filterList = new FilteredList<>(diaryEntryList);
+
+                filterList.predicateProperty().bind(Bindings.createObjectBinding(()
+                                -> Entries ->
+                                (Entries.getTitle().toLowerCase().contains(titlesearch.getText().toLowerCase()))
+                                        && ((Entries.getLocation().toLowerCase().contains(locationsearch.getText().toLowerCase())) || (locationsearch.getText().isEmpty()))
+                                        && (Entries.getDate().isAfter(startsearch.getValue()) || (Entries.getDate().isEqual(startsearch.getValue())))
+                                        && (Entries.getDate().isBefore(utilsearch.getValue()) || (Entries.getDate().isEqual(utilsearch.getValue())))
+                                        && ((Entries.getText().toLowerCase().contains(textsearch.getText().toLowerCase())) || (textsearch.getText().isEmpty()))
+                                        && (Entries.categoryFilter(Entries.getCategoryEntries(), categorysearch.getValue()) || (categorysearch.getValue().isEmpty()))
+                                        && (Entries.descriptionFilter(Entries.getCategoryEntries(), descrsearch.getText())|| (descrsearch.getText().isEmpty()))
+                                        && (Entries.starFilter(Entries.getCategoryEntries(), starsearch.getValue())|| (starsearch.getValue().isEmpty())),
+
+                        titlesearch.textProperty(),
+                        locationsearch.textProperty(),
+                        startsearch.converterProperty(),
+                        utilsearch.converterProperty(),
+                        textsearch.textProperty(),
+                        categorysearch.converterProperty(),
+                        descrsearch.textProperty(),
+                        starsearch.converterProperty()
+
+                ));
                 entryTableView.setItems(filterList);
-
-                titlesearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getTitle().toLowerCase().contains(titlesearch.getText().toLowerCase()) || (titlesearch.getText().isEmpty()));
-                });
-                locationsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getLocation().toLowerCase().contains(locationsearch.getText().toLowerCase())|| (locationsearch.getText().isEmpty()));
-                });
-                startsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getDate().equals(startsearch.getValue()) || entries.getDate().isAfter(startsearch.getValue())|| (startsearch.getValue().equals(null)));
-                });
-                utilsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getDate().equals(utilsearch.getValue()) || entries.getDate().isBefore(utilsearch.getValue())|| (utilsearch.getValue().equals(null)));
-                });
-                textsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.getText().toLowerCase().contains(textsearch.getText().toLowerCase())|| (textsearch.getText().isEmpty()));
-                });
-                categorysearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.categoryFilter(entries.getCategoryEntries(), categorysearch.getValue())|| (categorysearch.getValue().isEmpty()));
-                });
-                descrsearch.textProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.descriptionFilter(entries.getCategoryEntries(), descrsearch.getText())|| (descrsearch.getText().isEmpty()));
-                });
-                starsearch.valueProperty().addListener((obsVal, oldValue, newValue) -> {
-                        filterList.setPredicate(entries -> entries.starFilter(entries.getCategoryEntries(), starsearch.getValue())|| (starsearch.getValue().isEmpty()));
-                });
-
         }
 
         @FXML
-        void searchButtonClicked(ActionEvent event) throws IOException {
+        public void searchButtonClicked(){
 
+                titlesearch.setText(titlesearch.getText());
         }
 
         @FXML
-        void clearButtonClicked(ActionEvent event) throws IOException {
+        public void clearButtonClicked(){
 
+                titlesearch.setText("");
+                locationsearch.setText("");
+                startsearch.setValue(LocalDate.of(2022, 01, 01));
+                utilsearch.setValue(LocalDate.of(2023,01,01));
+                textsearch.setText("");
+                categorysearch.setValue("");
+                descrsearch.setText("");
+                starsearch.setValue("");
         }
 
         @FXML
-        void createButtonClicked(ActionEvent event) throws IOException {
+        public void createButtonClicked() throws IOException {
 
                 Parent root = FXMLLoader.load(getClass().getResource("createNewEntry.fxml"));
                 Stage window = (Stage) createButton.getScene().getWindow();
@@ -127,12 +140,7 @@ public class MainController implements Initializable {
         }
 
         @FXML
-        void mapButtonClicked(ActionEvent event) throws IOException{
-
-        }
-
-        @FXML
-        void showButtonClicked(ActionEvent event) throws IOException {
+        public void showButtonClicked() throws IOException {
 
                 selectedForUpdate = entryTableView.getSelectionModel().getSelectedItem();
 
@@ -146,16 +154,45 @@ public class MainController implements Initializable {
         }
 
         @FXML
-        void deleteButtonClicked(ActionEvent event) {
-
-                int selectedID = entryTableView.getSelectionModel().getSelectedIndex();
-                entryTableView.getItems().remove(selectedID);
+        public void deleteButtonClicked(){
+                
+                selectedForUpdate = entryTableView.getSelectionModel().getSelectedItem();
+                diaryEntryList.remove(selectedForUpdate);
+                entryTableView.setItems(diaryEntryList);
 
         }
 
+        @FXML
+        public void showMapButtonClicked() throws IOException {
 
+                for (DiaryEntry item : entryTableView.getItems()) {
 
+                        ShowMapController.locations.add(locationCol.getCellObservableValue(item).getValue());
+                }
 
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("showMap.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root,650,500));
+                stage.show();
+        }
+
+        @FXML
+        public void saveAsButtonClicked(){
+
+                try {
+                        selectedForUpdate = entryTableView.getSelectionModel().getSelectedItem();
+                        CreateNewEntryController.createXml();
+                        CreateNewEntryController.createImagePath();
+
+                }catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Could not save data! Please select an entry");
+                        alert.showAndWait();
+                }
+        }
 
 
 }
