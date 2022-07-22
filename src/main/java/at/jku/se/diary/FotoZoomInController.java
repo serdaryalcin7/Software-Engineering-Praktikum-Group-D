@@ -6,6 +6,9 @@ import javafx.scene.image.ImageView;
 
 import javax.swing.*;
 
+/**
+ * @author Team-D
+ */
 public class FotoZoomInController {
 
     @FXML
@@ -13,6 +16,9 @@ public class FotoZoomInController {
 
     private String fotopath;
 
+    /**
+     * @param fotopath to set image path
+     */
     public void setFotopath (String fotopath) {
 
         this.fotopath = fotopath;
@@ -24,6 +30,9 @@ public class FotoZoomInController {
 
     }
 
+    /**
+     * Initializes the controller class.
+     */
     public void initialize() {
 
         SwingUtilities.invokeLater(() -> setFotoZoomIn(fotopath));

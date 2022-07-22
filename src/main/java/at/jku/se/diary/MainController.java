@@ -19,6 +19,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * @author Team-D
+ */
 public class MainController implements Initializable {
         @FXML
         private TableView<DiaryEntry> entryTableView;
@@ -30,6 +33,10 @@ public class MainController implements Initializable {
         private TableColumn<DiaryEntry, LocalDate> dateCol;
         @FXML
         private TableColumn<DiaryEntry, String> textCol;
+        @FXML
+        private Button clearButton;
+        @FXML
+        private Button searchButton;
         @FXML
         private Button createButton;
         @FXML
@@ -60,6 +67,9 @@ public class MainController implements Initializable {
         public static ObservableList<DiaryEntry> diaryEntryList = FXCollections.observableArrayList();
         public static DiaryEntry selectedForUpdate;
 
+        /**
+         * Initializes the controller class.
+         */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -111,12 +121,20 @@ public class MainController implements Initializable {
                 entryTableView.setItems(filterList);
         }
 
+        /**
+         * This method will use different search terms
+         * when the searchButton is pushed
+         */
         @FXML
         public void searchButtonClicked(){
 
                 titlesearch.setText(titlesearch.getText());
         }
 
+        /**
+         * This method will clear the search bar content
+         * when the clearButton is pushed
+         */
         @FXML
         public void clearButtonClicked(){
 
@@ -130,6 +148,10 @@ public class MainController implements Initializable {
                 starsearch.setValue("");
         }
 
+        /**
+         * This method will switch to the createNewEntry scene
+         * when the createButton is pushed
+         */
         @FXML
         public void createButtonClicked() throws IOException {
 
@@ -139,6 +161,10 @@ public class MainController implements Initializable {
 
         }
 
+        /**
+         * If the showButton button is pushed,
+         * pass the selected DiaryEntry to the createNewEntry and preload it with the data
+         */
         @FXML
         public void showButtonClicked() throws IOException {
 
@@ -153,6 +179,10 @@ public class MainController implements Initializable {
                 controller.showDiaryEntry(selectedForUpdate);
         }
 
+        /**
+         * If the deleteButton button is pushed,
+         * remove the selected DiaryEntry from the TableView
+         */
         @FXML
         public void deleteButtonClicked(){
                 
@@ -162,6 +192,11 @@ public class MainController implements Initializable {
 
         }
 
+        /**
+         * If the showMapButton button is pushed,
+         * this method will open a new scene - showMap
+         * Diary entries will be displayed on a map
+         */
         @FXML
         public void showMapButtonClicked() throws IOException {
 
@@ -178,6 +213,10 @@ public class MainController implements Initializable {
                 stage.show();
         }
 
+        /**
+         * If the saveAsButton button is pushed,
+         * save the selected DiaryEntry as an XML file
+         */
         @FXML
         public void saveAsButtonClicked(){
 

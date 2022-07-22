@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * @author Team-D
+ */
 public class ShowMapController implements Initializable {
 
     @FXML
@@ -19,7 +22,9 @@ public class ShowMapController implements Initializable {
     private WebEngine webEngine;
     public static List<String> locations = new ArrayList<>();
 
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -39,13 +44,11 @@ public class ShowMapController implements Initializable {
             return map;
         }
 
-
-
+    /**
+     * @return locations
+     */
     public List<String> getLocations() {
         return locations;
     }
 
-    public void setLocations(List<String> locations) {
-        this.locations = locations;
-    }
 }

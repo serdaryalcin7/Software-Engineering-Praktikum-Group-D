@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Team-D
  */
-
 class CategoryEntryTest {
 
     private CategoryEntry categoryEntry = new CategoryEntry();

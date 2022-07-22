@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Team-D
  */
-
 class DiaryEntryTest {
 
     private DiaryEntry diaryEntry = new DiaryEntry();

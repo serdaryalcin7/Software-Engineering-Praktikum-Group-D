@@ -34,8 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * @author Team-D
+ */
 public class CreateNewEntryController implements Initializable {
-
     @FXML
     private TextField titleFld;
     @FXML
@@ -87,6 +89,10 @@ public class CreateNewEntryController implements Initializable {
     DiaryEntry newEntry = new DiaryEntry();
     private ArrayList<CategoryEntry> categoryEntryArrayList = new ArrayList<>();
 
+    /**
+     * Initializes the controller class.
+     */
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         starComb.getItems().addAll("1","2","3","4","5");
@@ -94,6 +100,9 @@ public class CreateNewEntryController implements Initializable {
 
     }
 
+    /**
+     *  with this method can choose to use bold or italic to emphasize any paragraph of text
+     */
     @FXML
     public void radioClicked(){
 
@@ -112,18 +121,31 @@ public class CreateNewEntryController implements Initializable {
         }
     }
 
+    /**
+     *  this method will manage tags
+     *  add new Category in category-Combobox
+     */
     @FXML
     public void addInputTOCombo(){
 
         categoryComb.getItems().add(addCategory.getText());
         addCategory.clear();
     }
+
+    /**
+     *  this method will manage tags
+     *  remove selected Category in category-Combobox
+     */
     @FXML
     public void removeComboBox(){
 
         categoryComb.getItems().remove(categoryComb.getValue());
     }
 
+    /**
+     * If the addCategoryButton button is pushed,
+     * add categoryEntry into the TableView
+     */
     @FXML
     public void addCategoryButtonClicked(){
 
@@ -142,6 +164,11 @@ public class CreateNewEntryController implements Initializable {
         descFld.clear();
         starComb.setValue(null);
     }
+
+    /**
+     * If the deleteCategoryButton button is pushed,
+     * remove the selected categoryEntry from the TableView
+     */
     @FXML
     public void deleteCategoryButtonClicked(){
 
@@ -149,6 +176,10 @@ public class CreateNewEntryController implements Initializable {
         categoryTableView.getItems().remove(selectedID);
     }
 
+    /**
+     * When this button is pushed, a FileChooser object is launched to allow the user to browse for a new image file.
+     * When that is complete, it will update the view with a new image
+     */
     @FXML
     public void addFoto1(){
 
@@ -164,6 +195,10 @@ public class CreateNewEntryController implements Initializable {
         }
     }
 
+    /**
+     * When this button is pushed, a FileChooser object is launched to allow the user to browse for a new image file.
+     * When that is complete, it will update the view with a new image
+     */
     @FXML
     public void addFoto2(){
 
@@ -179,6 +214,10 @@ public class CreateNewEntryController implements Initializable {
         }
     }
 
+    /**
+     * When this button is pushed, a FileChooser object is launched to allow the user to browse for a new image file.
+     * When that is complete, it will update the view with a new image
+     */
     @FXML
     public void addFoto3(){
 
@@ -194,19 +233,35 @@ public class CreateNewEntryController implements Initializable {
         }
     }
 
+    /**
+     * When this button is pushed, delete the first image
+     */
     @FXML
     public void deleteFoto1(){
         img1.setImage(null);
     }
+
+    /**
+     * When this button is pushed, delete the second image
+     */
     @FXML
     public void deleteFoto2(){
         img2.setImage(null);
     }
+
+    /**
+     * When this button is pushed, delete the third image
+     */
     @FXML
     public void deleteFoto3(){
         img3.setImage(null);
     }
 
+    /**
+     * If the zoomInButton is pushed,
+     * this method will open a new scene - fotoZoomIn
+     * zoom in on the first image
+     */
     @FXML
     public void zoomInButton1Clicked() throws IOException {
 
@@ -223,6 +278,11 @@ public class CreateNewEntryController implements Initializable {
         stage.show();
     }
 
+    /**
+     * If the zoomInButton is pushed,
+     * this method will open a new scene - fotoZoomIn
+     * zoom in on the second image
+     */
     @FXML
     public void zoomInButton2Clicked() throws IOException {
 
@@ -239,6 +299,11 @@ public class CreateNewEntryController implements Initializable {
         stage.show();
     }
 
+    /**
+     * If the zoomInButton is pushed,
+     * this method will open a new scene - fotoZoomIn
+     * zoom in on the third image
+     */
     @FXML
     public void zoomInButton3Clicked() throws IOException {
 
@@ -255,6 +320,9 @@ public class CreateNewEntryController implements Initializable {
         stage.show();
     }
 
+    /**
+     * This method will switch to the mainview scene when the button is pushed
+     */
     @FXML
     public void backButtonClicked() throws IOException {
 
@@ -263,6 +331,10 @@ public class CreateNewEntryController implements Initializable {
         window.setScene(new Scene(root, 1000, 700));
     }
 
+    /**
+     * This method will try to create a new instance of a DiaryEntry.
+     * If the saveButton is pushed, will switch to the mainview scene
+     */
     @FXML
     public void saveButtonClicked() throws IOException {
         try {
@@ -302,6 +374,9 @@ public class CreateNewEntryController implements Initializable {
         }
     }
 
+    /**
+     * This method will show the Details of selected DiaryEntry
+     */
     public void showDiaryEntry(DiaryEntry selectedForUpdate) {
 
         titleFld.setText(selectedForUpdate.getTitle());
@@ -320,6 +395,10 @@ public class CreateNewEntryController implements Initializable {
 
     }
 
+    /**
+     * This method will read from the scene and try to modify the selected DiaryEntry
+     * If the editButton is pushed, will switch to the mainview scene
+     */
     @FXML
     public void editButtonClicked() throws IOException {
 
@@ -354,6 +433,11 @@ public class CreateNewEntryController implements Initializable {
         window.setScene(new Scene(root, 1000, 700));
     }
 
+    /**
+     * If the showMapButton button is pushed,
+     * this method will open a new scene - showMap
+     * selected Diary Entry will be displayed on a map
+     */
     @FXML
     public void mapButtonClicked() throws IOException {
 
@@ -369,7 +453,9 @@ public class CreateNewEntryController implements Initializable {
 
     }
 
-
+    /**
+     * This method will create an Xml file
+     */
     public static void createXml() throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -431,6 +517,9 @@ public class CreateNewEntryController implements Initializable {
         tf.transform(new DOMSource(document), new StreamResult(file));
     }
 
+    /**
+     * This method will create a txt-file, to save the path of images
+     */
     public static void createImagePath() throws IOException {
 
         File imagepath = new File("imagePath.txt");

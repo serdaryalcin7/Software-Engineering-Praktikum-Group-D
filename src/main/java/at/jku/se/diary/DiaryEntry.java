@@ -1,11 +1,11 @@
 package at.jku.se.diary;
 
-
-import at.jku.se.diary.CategoryEntry;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * @author Team-D
+ */
 public class DiaryEntry {
 
     private String title;
@@ -21,80 +21,115 @@ public class DiaryEntry {
 
     public DiaryEntry() {}
 
+    /**
+     * @return Title of the Diary Entry
+     */
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        if (title != null) {
-            this.title = title;
-        }
-    }
+    /**
+     * Changes the Title of this Diary Entry
+     * @param title The new value for this Diary Entry
+     */
+    public void setTitle(String title) { this.title = title; }
 
+    /**
+     * @return Location of the Diary Entry
+     */
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        if (location != null) {
-            this.location = location;
-        }
-    }
+    /**
+     * Changes the Location of this Diary Entry
+     * @param location The new value for this Diary Entry
+     */
+    public void setLocation(String location) { this.location = location; }
 
+    /**
+     * @return Date of the Diary Entry
+     */
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        if (date != null) {
-            this.date = date;
-        }
-    }
+    /**
+     * Changes the Date of this Diary Entry
+     * @param date The new value for this Diary Entry
+     */
+    public void setDate(LocalDate date) { this.date = date;}
 
+    /**
+     * @return Text of the Diary Entry
+     */
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        if (text != null) {
-            this.text = text;
-        }
-    }
+    /**
+     * Changes the Text of this Diary Entry
+     * @param text The new value for this Diary Entry
+     */
+    public void setText(String text) { this.text = text; }
 
+    /**
+     * @return the CategoryEntries
+     */
     public ArrayList<CategoryEntry> getCategoryEntries() {
         return categoryEntries;
     }
 
-    public void setCategoryEntries(ArrayList<CategoryEntry> categoryEntries) {
-        if (categoryEntries != null) {
-            this.categoryEntries = categoryEntries;
-        }
-    }
+    /**
+     * @param categoryEntries to set
+     */
+    public void setCategoryEntries(ArrayList<CategoryEntry> categoryEntries) { this.categoryEntries = categoryEntries; }
 
+    /**
+     * @return first image path
+     */
     public String getFotopath1() {
         return fotopath1;
     }
 
+    /**
+     * @param fotopath1 to set first image path
+     */
     public void setFotopath1(String fotopath1) {
         this.fotopath1 = fotopath1;
     }
 
+    /**
+     * @return second image path
+     */
     public String getFotopath2() {
         return fotopath2;
     }
 
+    /**
+     * @param fotopath2 to set second image path
+     */
     public void setFotopath2(String fotopath2) {
         this.fotopath2 = fotopath2;
     }
 
+    /**
+     * @return third image path
+     */
     public String getFotopath3() {
         return fotopath3;
     }
 
+    /**
+     * @param fotopath3 to set third image path
+     */
     public void setFotopath3(String fotopath3) {
         this.fotopath3 = fotopath3;
     }
 
+    /**
+     * This method will create a new diary entry
+     */
     public DiaryEntry createNewEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries, String fotopath1, String fotopath2, String fotopath3) throws EntryNullException {
 
         if(title == "" || location == "" || date == null || text == "") {
@@ -113,9 +148,11 @@ public class DiaryEntry {
             diaryEntry.setFotopath3(fotopath3);
 
         return diaryEntry;
-
     }
 
+    /**
+     * This method will verify if the given stored text can find the corresponding category
+     */
     public boolean categoryFilter(ArrayList<CategoryEntry> categoryEntries, String searchValue){
         for (CategoryEntry category: categoryEntries) {
             if (category.getCategory().equalsIgnoreCase(searchValue)){
@@ -125,6 +162,10 @@ public class DiaryEntry {
         return false;
     }
 
+
+    /**
+     * This method will verify if the given stored text can find the corresponding description
+     */
     public boolean descriptionFilter(ArrayList<CategoryEntry> categoryEntries, String searchValue){
         for (CategoryEntry description: categoryEntries) {
             if (description.getDescription().equalsIgnoreCase(searchValue)){
@@ -134,6 +175,10 @@ public class DiaryEntry {
         return false;
     }
 
+
+    /**
+     * This method will verify if the given stored text can find the corresponding star rating
+     */
     public boolean starFilter(ArrayList<CategoryEntry> categoryEntries, String searchValue){
         for (CategoryEntry star: categoryEntries) {
             if (star.getStar().equals(searchValue)){
