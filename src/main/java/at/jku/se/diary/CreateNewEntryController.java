@@ -36,6 +36,10 @@ import java.util.ResourceBundle;
 
 /**
  * @author Team-D
+ * This class opens the window for creating a new entry with several functions as editing the textfields
+ * and adding pictures
+ * also opening the map view
+ * + creating new categories
  */
 public class CreateNewEntryController implements Initializable {
     @FXML

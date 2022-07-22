@@ -8,6 +8,7 @@ import javax.swing.*;
 
 /**
  * @author Team-D
+ * this class helps zooming added photos
  */
 public class FotoZoomInController {
 

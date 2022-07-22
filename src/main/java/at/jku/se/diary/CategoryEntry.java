@@ -2,6 +2,7 @@ package at.jku.se.diary;
 
 /**
  * @author Team-D
+ * This class has a constructor and generates getters and setters for the categories
  */
 public class CategoryEntry {
 

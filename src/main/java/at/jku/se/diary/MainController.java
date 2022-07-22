@@ -21,6 +21,10 @@ import java.util.ResourceBundle;
 
 /**
  * @author Team-D
+ * overview of the Diary
+ * all Buttons to navigate to other scenes + map view
+ * Overview of Entries
+ * Filter options
  */
 public class MainController implements Initializable {
         @FXML

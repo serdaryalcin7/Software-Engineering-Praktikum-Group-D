@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author Team-D
+ * Calls webpage for google map to show location of the entry
  */
 public class ShowMapController implements Initializable {
 

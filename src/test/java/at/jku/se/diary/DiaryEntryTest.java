@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 /**
  * @author Team-D
  */
-class DiaryEntryTest {
+public class DiaryEntryTest {
 
-    private DiaryEntry diaryEntry = new DiaryEntry();
-    private ArrayList<CategoryEntry> categoryEntryArrayList= new ArrayList<>();
+    public DiaryEntry diaryEntry = new DiaryEntry();
+    public ArrayList<CategoryEntry> categoryEntryArrayList= new ArrayList<>();
 
     /**
      * class DiaryEntry: Test of getTitle method

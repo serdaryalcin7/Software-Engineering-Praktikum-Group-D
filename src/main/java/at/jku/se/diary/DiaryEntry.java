@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 /**
  * @author Team-D
+ * Constructor + Getters and Setters for a new Entry
+ * Also the filter function happens in this class
+ *
  */
 public class DiaryEntry {
 

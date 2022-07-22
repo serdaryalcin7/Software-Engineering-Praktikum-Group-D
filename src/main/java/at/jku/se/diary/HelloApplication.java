@@ -9,6 +9,7 @@ import java.io.IOException;
 
 /**
  * @author Team-D
+ * This is the main class to run the Application
  */
 public class HelloApplication extends Application {
 
