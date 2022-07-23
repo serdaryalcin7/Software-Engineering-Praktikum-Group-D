@@ -343,7 +343,6 @@ public class CreateNewEntryController implements Initializable {
      * This method will try to create a new instance of a DiaryEntry.
      * If the saveButton is pushed, will switch to the mainview scene
      * @throws IOException
-     * @throws EntryNullException Title,Location, Date and Text can not be null
      */
     @FXML
     public void saveButtonClicked() throws IOException {
