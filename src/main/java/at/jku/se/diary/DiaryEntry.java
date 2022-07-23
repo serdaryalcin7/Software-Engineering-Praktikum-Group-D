@@ -161,7 +161,6 @@ public class DiaryEntry {
         }
 
         DiaryEntry diaryEntry = new DiaryEntry();
-
             diaryEntry.setTitle(title);
             diaryEntry.setLocation(location);
             diaryEntry.setDate(date);
