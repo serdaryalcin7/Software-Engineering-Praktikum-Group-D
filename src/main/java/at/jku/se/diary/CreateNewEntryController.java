@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
+ * opens the window for creating a new entry
  * @author Team-D
  * This class opens the window for creating a new entry with several functions as editing the textfields
  * and adding pictures
@@ -265,7 +266,7 @@ public class CreateNewEntryController implements Initializable {
      * If the zoomInButton is pushed,
      * this method will open a new scene - fotoZoomIn
      * zoom in on the first image
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @FXML
     public void zoomInButton1Clicked() throws IOException {
@@ -287,7 +288,7 @@ public class CreateNewEntryController implements Initializable {
      * If the zoomInButton is pushed,
      * this method will open a new scene - fotoZoomIn
      * zoom in on the second image
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @FXML
     public void zoomInButton2Clicked() throws IOException {
@@ -309,7 +310,7 @@ public class CreateNewEntryController implements Initializable {
      * If the zoomInButton is pushed,
      * this method will open a new scene - fotoZoomIn
      * zoom in on the third image
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @FXML
     public void zoomInButton3Clicked() throws IOException {
@@ -329,7 +330,7 @@ public class CreateNewEntryController implements Initializable {
 
     /**
      * This method will switch to the mainview scene when the button is pushed
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @FXML
     public void backButtonClicked() throws IOException {
@@ -342,8 +343,7 @@ public class CreateNewEntryController implements Initializable {
     /**
      * This method will try to create a new instance of a DiaryEntry.
      * If the saveButton is pushed, will switch to the mainview scene
-     * @throws IOException
-     * @throws EntryNullException Title,Location, Date and Text can not be null
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @FXML
     public void saveButtonClicked() throws IOException {
@@ -409,7 +409,7 @@ public class CreateNewEntryController implements Initializable {
     /**
      * This method will read from the scene and try to modify the selected DiaryEntry
      * If the editButton is pushed, will switch to the mainview scene
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @FXML
     public void editButtonClicked() throws IOException {
@@ -449,7 +449,7 @@ public class CreateNewEntryController implements Initializable {
      * If the showMapButton button is pushed,
      * this method will open a new scene - showMap
      * selected Diary Entry will be displayed on a map
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @FXML
     public void mapButtonClicked() throws IOException {
@@ -534,7 +534,7 @@ public class CreateNewEntryController implements Initializable {
 
     /**
      * This method will create a txt-file, to save the path of images
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     public static void createImagePath() throws IOException {
 

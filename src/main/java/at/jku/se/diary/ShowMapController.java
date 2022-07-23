@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * @author Team-D
  * Calls webpage for google map to show location of the entry
+ * @author Team-D
  */
 public class ShowMapController implements Initializable {
 
@@ -45,6 +45,7 @@ public class ShowMapController implements Initializable {
         }
 
     /**
+     * Getter method for Locations
      * @return locations
      */
     public List<String> getLocations() {

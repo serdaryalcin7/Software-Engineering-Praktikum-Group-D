@@ -1,8 +1,8 @@
 package at.jku.se.diary;
 
 /**
- * @author Team-D
  * This class has a constructor and generates getters and setters for the categories
+ * @author Team-D
  */
 public class CategoryEntry {
 
@@ -10,8 +10,17 @@ public class CategoryEntry {
     private String description;
     private String star;
 
+    /**
+     * Object constructor
+     */
     public CategoryEntry(){}
 
+    /**
+     * Object constructor
+     * @param category
+     * @param description
+     * @param star
+     */
     public CategoryEntry(String category, String description, String star) {
 
             this.category = category;
@@ -20,6 +29,7 @@ public class CategoryEntry {
     }
 
     /**
+     * Getter method for the Category
      * @return Category of the Category Entry
      */
     public String getCategory() {
@@ -35,6 +45,7 @@ public class CategoryEntry {
     }
 
     /**
+     * Getter method for the Description
      * @return Description of the Category Entry
      */
     public String getDescription() {
@@ -50,6 +61,7 @@ public class CategoryEntry {
     }
 
     /**
+     * Getter method for the Star
      * @return Star of the Category Entry
      */
     public String getStar() {

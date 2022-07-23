@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * @author Team-D
+ * DiaryEntry contains title, location, date, test, tags and pictures
  * Constructor + Getters and Setters for a new Entry
  * Also the filter function happens in this class
- *
+ * @author Team-D
  */
 public class DiaryEntry {
 
@@ -22,9 +22,13 @@ public class DiaryEntry {
     private String fotopath2;
     private String fotopath3;
 
+    /**
+     * Object constructor
+     */
     public DiaryEntry() {}
 
     /**
+     * Getter method for Title
      * @return Title of the Diary Entry
      */
     public String getTitle() {
@@ -38,6 +42,7 @@ public class DiaryEntry {
     public void setTitle(String title) { this.title = title; }
 
     /**
+     * Getter method for Location
      * @return Location of the Diary Entry
      */
     public String getLocation() {
@@ -51,6 +56,7 @@ public class DiaryEntry {
     public void setLocation(String location) { this.location = location; }
 
     /**
+     * Getter method for Date
      * @return Date of the Diary Entry
      */
     public LocalDate getDate() {
@@ -64,6 +70,7 @@ public class DiaryEntry {
     public void setDate(LocalDate date) { this.date = date;}
 
     /**
+     * Getter method for Text
      * @return Text of the Diary Entry
      */
     public String getText() {
@@ -77,6 +84,7 @@ public class DiaryEntry {
     public void setText(String text) { this.text = text; }
 
     /**
+     * Getter method for CategoryEntries
      * @return the CategoryEntries
      */
     public ArrayList<CategoryEntry> getCategoryEntries() {
@@ -89,6 +97,7 @@ public class DiaryEntry {
     public void setCategoryEntries(ArrayList<CategoryEntry> categoryEntries) { this.categoryEntries = categoryEntries; }
 
     /**
+     *  Getter method for Fotopath
      * @return first image path
      */
     public String getFotopath1() {
@@ -103,6 +112,7 @@ public class DiaryEntry {
     }
 
     /**
+     * Getter method for Fotopath
      * @return second image path
      */
     public String getFotopath2() {
@@ -117,6 +127,7 @@ public class DiaryEntry {
     }
 
     /**
+     * Getter method for Fotopath
      * @return third image path
      */
     public String getFotopath3() {
@@ -132,6 +143,16 @@ public class DiaryEntry {
 
     /**
      * This method will create a new diary entry
+     * @param title
+     * @param location
+     * @param date
+     * @param text
+     * @param categoryEntries
+     * @param fotopath1
+     * @param fotopath2
+     * @param  fotopath3
+     * @return diaryEntry
+     * @throws EntryNullException Title, Location, Date, Text can not be null
      */
     public DiaryEntry createNewEntry(String title, String location, LocalDate date, String text, ArrayList<CategoryEntry> categoryEntries, String fotopath1, String fotopath2, String fotopath3) throws EntryNullException {
 
@@ -155,6 +176,9 @@ public class DiaryEntry {
 
     /**
      * This method will verify if the given stored text can find the corresponding category
+     * @param categoryEntries
+     * @param searchValue
+     * @return true/false
      */
     public boolean categoryFilter(ArrayList<CategoryEntry> categoryEntries, String searchValue){
         for (CategoryEntry category: categoryEntries) {
@@ -168,6 +192,9 @@ public class DiaryEntry {
 
     /**
      * This method will verify if the given stored text can find the corresponding description
+     * @param categoryEntries
+     * @param searchValue
+     * @return true/false
      */
     public boolean descriptionFilter(ArrayList<CategoryEntry> categoryEntries, String searchValue){
         for (CategoryEntry description: categoryEntries) {
@@ -181,6 +208,9 @@ public class DiaryEntry {
 
     /**
      * This method will verify if the given stored text can find the corresponding star rating
+     * @param categoryEntries
+     * @param searchValue
+     * @return true/false
      */
     public boolean starFilter(ArrayList<CategoryEntry> categoryEntries, String searchValue){
         for (CategoryEntry star: categoryEntries) {

@@ -20,8 +20,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
- * @author Team-D
  * overview of the Diary
+ * @author Team-D
  * all Buttons to navigate to other scenes + map view
  * Overview of Entries
  * Filter options
@@ -155,7 +155,7 @@ public class MainController implements Initializable {
         /**
          * This method will switch to the createNewEntry scene
          * when the createButton is pushed
-         * @throws IOException
+         * @throws IOException whenever an input or output operation is failed or interpreted
          */
         @FXML
         public void createButtonClicked() throws IOException {
@@ -169,7 +169,7 @@ public class MainController implements Initializable {
         /**
          * If the showButton button is pushed,
          * pass the selected DiaryEntry to the createNewEntry and preload it with the data
-         * @throws IOException
+         * @throws IOException whenever an input or output operation is failed or interpreted
          */
         @FXML
         public void showButtonClicked() throws IOException {
@@ -201,7 +201,7 @@ public class MainController implements Initializable {
          * If the showMapButton button is pushed,
          * this method will open a new scene - showMap
          * Diary entries will be displayed on a map
-         * @throws IOException
+         * @throws IOException whenever an input or output operation is failed or interpreted
          */
         @FXML
         public void showMapButtonClicked() throws IOException {

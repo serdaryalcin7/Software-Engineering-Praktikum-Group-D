@@ -7,8 +7,8 @@ import javafx.scene.image.ImageView;
 import javax.swing.*;
 
 /**
+ * this class helps zoom-in added photos
  * @author Team-D
- * this class helps zooming added photos
  */
 public class FotoZoomInController {
 
@@ -18,6 +18,7 @@ public class FotoZoomInController {
     private String fotopath;
 
     /**
+     * The new value of fotopath
      * @param fotopath to set image path
      */
     public void setFotopath (String fotopath) {
@@ -26,7 +27,8 @@ public class FotoZoomInController {
     }
 
     /**
-     * @param fotopath
+     *
+     * @param fotopath The new value fotopath
      */
     public void setFotoZoomIn (String fotopath) {
 

@@ -1,9 +1,9 @@
 package at.jku.se.diary;
 
 /**
- * @author Team-D
- * This is a Exception class
+ * This is an Exception class
  * appears if a field is not filled
+ * @author Team-D
  */
 public class EntryNullException extends Throwable {
 

@@ -8,14 +8,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author Team-D
  * This is the main class to run the Application
+ * @author Team-D
  */
 public class HelloApplication extends Application {
 
     /**
      * Homepage begin with mainview scene
-     * @throws IOException
+     * @throws IOException whenever an input or output operation is failed or interpreted
      */
     @Override
     public void start(Stage stage) throws IOException {
