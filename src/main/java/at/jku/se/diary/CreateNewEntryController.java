@@ -265,6 +265,7 @@ public class CreateNewEntryController implements Initializable {
      * If the zoomInButton is pushed,
      * this method will open a new scene - fotoZoomIn
      * zoom in on the first image
+     * @throws IOException
      */
     @FXML
     public void zoomInButton1Clicked() throws IOException {
@@ -286,6 +287,7 @@ public class CreateNewEntryController implements Initializable {
      * If the zoomInButton is pushed,
      * this method will open a new scene - fotoZoomIn
      * zoom in on the second image
+     * @throws IOException
      */
     @FXML
     public void zoomInButton2Clicked() throws IOException {
@@ -307,6 +309,7 @@ public class CreateNewEntryController implements Initializable {
      * If the zoomInButton is pushed,
      * this method will open a new scene - fotoZoomIn
      * zoom in on the third image
+     * @throws IOException
      */
     @FXML
     public void zoomInButton3Clicked() throws IOException {
@@ -326,6 +329,7 @@ public class CreateNewEntryController implements Initializable {
 
     /**
      * This method will switch to the mainview scene when the button is pushed
+     * @throws IOException
      */
     @FXML
     public void backButtonClicked() throws IOException {
@@ -338,6 +342,8 @@ public class CreateNewEntryController implements Initializable {
     /**
      * This method will try to create a new instance of a DiaryEntry.
      * If the saveButton is pushed, will switch to the mainview scene
+     * @throws IOException
+     * @throws EntryNullException Title,Location, Date and Text can not be null
      */
     @FXML
     public void saveButtonClicked() throws IOException {
@@ -380,6 +386,7 @@ public class CreateNewEntryController implements Initializable {
 
     /**
      * This method will show the Details of selected DiaryEntry
+     * @param selectedForUpdate selected DiaryEntry from Tableview
      */
     public void showDiaryEntry(DiaryEntry selectedForUpdate) {
 
@@ -402,6 +409,7 @@ public class CreateNewEntryController implements Initializable {
     /**
      * This method will read from the scene and try to modify the selected DiaryEntry
      * If the editButton is pushed, will switch to the mainview scene
+     * @throws IOException
      */
     @FXML
     public void editButtonClicked() throws IOException {
@@ -441,6 +449,7 @@ public class CreateNewEntryController implements Initializable {
      * If the showMapButton button is pushed,
      * this method will open a new scene - showMap
      * selected Diary Entry will be displayed on a map
+     * @throws IOException
      */
     @FXML
     public void mapButtonClicked() throws IOException {
@@ -459,6 +468,8 @@ public class CreateNewEntryController implements Initializable {
 
     /**
      * This method will create an Xml file
+     * @throws ParserConfigurationException
+     * @throws TransformerException
      */
     public static void createXml() throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -523,6 +534,7 @@ public class CreateNewEntryController implements Initializable {
 
     /**
      * This method will create a txt-file, to save the path of images
+     * @throws IOException
      */
     public static void createImagePath() throws IOException {
 

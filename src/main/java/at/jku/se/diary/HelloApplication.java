@@ -13,6 +13,10 @@ import java.io.IOException;
  */
 public class HelloApplication extends Application {
 
+    /**
+     * Homepage begin with mainview scene
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainview.fxml"));

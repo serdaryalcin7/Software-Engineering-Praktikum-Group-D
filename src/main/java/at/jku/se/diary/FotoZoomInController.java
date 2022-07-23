@@ -25,6 +25,9 @@ public class FotoZoomInController {
         this.fotopath = fotopath;
     }
 
+    /**
+     * @param fotopath
+     */
     public void setFotoZoomIn (String fotopath) {
 
         this.fotoZoomIn.setImage(new Image(fotopath));

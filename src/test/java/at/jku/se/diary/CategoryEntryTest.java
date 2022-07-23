@@ -5,16 +5,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * Unit Test of class CategoryEntry
  * @author Team-D
  */
 public class CategoryEntryTest {
 
-    public CategoryEntry categoryEntry = new CategoryEntry();
+    CategoryEntry categoryEntry = new CategoryEntry();
 
     /**
-     * @return
-     *  * class CategoryEntry: Test of getCategory method
+     * class CategoryEntry: Test of getCategory method
      */
     @Test
     void getCategory() {

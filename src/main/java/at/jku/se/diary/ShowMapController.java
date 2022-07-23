@@ -40,7 +40,6 @@ public class ShowMapController implements Initializable {
             for (int i = 0; i < getLocations().size(); i++) {
                 map = map + getLocations().get(i) + "/+/";
             }
-
             locations.clear();
             return map;
         }

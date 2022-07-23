@@ -9,12 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
+ * Unit Test of class DiaryEntry
  * @author Team-D
  */
 public class DiaryEntryTest {
 
-    public DiaryEntry diaryEntry = new DiaryEntry();
-    public ArrayList<CategoryEntry> categoryEntryArrayList= new ArrayList<>();
+    DiaryEntry diaryEntry = new DiaryEntry();
+    ArrayList<CategoryEntry> categoryEntryArrayList= new ArrayList<>();
 
     /**
      * class DiaryEntry: Test of getTitle method

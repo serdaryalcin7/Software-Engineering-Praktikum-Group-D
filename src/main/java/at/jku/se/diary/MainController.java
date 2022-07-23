@@ -155,6 +155,7 @@ public class MainController implements Initializable {
         /**
          * This method will switch to the createNewEntry scene
          * when the createButton is pushed
+         * @throws IOException
          */
         @FXML
         public void createButtonClicked() throws IOException {
@@ -168,6 +169,7 @@ public class MainController implements Initializable {
         /**
          * If the showButton button is pushed,
          * pass the selected DiaryEntry to the createNewEntry and preload it with the data
+         * @throws IOException
          */
         @FXML
         public void showButtonClicked() throws IOException {
@@ -193,13 +195,13 @@ public class MainController implements Initializable {
                 selectedForUpdate = entryTableView.getSelectionModel().getSelectedItem();
                 diaryEntryList.remove(selectedForUpdate);
                 entryTableView.setItems(diaryEntryList);
-
         }
 
         /**
          * If the showMapButton button is pushed,
          * this method will open a new scene - showMap
          * Diary entries will be displayed on a map
+         * @throws IOException
          */
         @FXML
         public void showMapButtonClicked() throws IOException {
